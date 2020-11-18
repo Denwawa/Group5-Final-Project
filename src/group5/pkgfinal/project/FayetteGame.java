@@ -62,7 +62,7 @@ public class FayetteGame extends JPanel implements ActionListener {
         setLayout(null);
 
         //Adds a fact about the campus to the panel
-        funFact = new JLabel("Fun Fact! This Campus was established in 1958");
+        funFact = new JLabel("Fun Fact! More than 90 percent of our students receive scholarships, grants, loans, and/or other financial assistance.");
         add(funFact);
         funFact.setBounds(new Rectangle(10, 10, 400, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));

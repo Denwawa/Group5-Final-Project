@@ -62,7 +62,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
         setLayout(null);
 
         //Adds a fact about the campus to the panel
-        funFact = new JLabel("Fun Fact! This Campus was established in 1958");
+        funFact = new JLabel("Fun Fact! This Campus currently resides 992 Students");
         add(funFact);
         funFact.setBounds(new Rectangle(10, 10, 400, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
