@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_65" class="java.beans.XMLDecoder">
+<string>What is 18 / 2 ?</string>
+<boolean>false</boolean>
+<string>6</string>
+<boolean>false</boolean>
+<string>8</string>
+<boolean>false</boolean>
+<string>4</string>
+<boolean>true</boolean>
+<string>9</string>
+</java>
