@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_65" class="java.beans.XMLDecoder">
+<string> What position did Saquon Barkly play at Penn State? </string>
+<boolean>False</boolean>
+<string>Quarter Back</string>
+<boolean>False</boolean>
+<string>Defensive Back</string>
+<boolean>True</boolean>
+<string>Running Back</string>
+<boolean>False</boolean>
+<string>Defensive Line</string>
+</java>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_65" class="java.beans.XMLDecoder">
+<string>What is 50 - 40? </string>
+<boolean>true</boolean>
+<string>10</string>
+<boolean>False</boolean>
+<string>11</string>
+<boolean>false</boolean>
+<string>9</string>
+<boolean>true</boolean>
+<string>12</string>
+</java>
