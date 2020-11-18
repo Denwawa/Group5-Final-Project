@@ -146,7 +146,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         //creates object of each panel for game and adds a back button
         universityPark = new UniversityParkGame();
         universityPark.backToMap.addActionListener(this);
-        scranton = new ScrantonGame();
+        scranton = new ScrantonGame(gameScore, showScore);
         scranton.backToMap.addActionListener(this);
         fayette = new FayetteGame();
         fayette.backToMap.addActionListener(this);
