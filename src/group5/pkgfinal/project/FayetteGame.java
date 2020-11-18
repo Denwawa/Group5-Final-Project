@@ -44,7 +44,7 @@ public class FayetteGame extends JPanel implements ActionListener {
 
     Boolean scored;
 
-    XML_240 berksXML;
+    XML_240 fayetteXML;
     String xmlFile, theme;
 
     GameScore gameScore;
@@ -56,7 +56,7 @@ public class FayetteGame extends JPanel implements ActionListener {
         theme = "";
         scored = false;
         this.gameScore = gameScore;
-        berksXML = new XML_240();// creates the 240 class that reads and writes XML
+        fayetteXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
 
@@ -116,7 +116,7 @@ public class FayetteGame extends JPanel implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
-        createQuestions("Fayette");
+        createQuestions("");
     }
 
     public void paintComponent(Graphics g) {
@@ -128,14 +128,13 @@ public class FayetteGame extends JPanel implements ActionListener {
     public void createQuestions(String inputTheme) {
         theme = inputTheme;
         if (theme == "Math") {
-            xmlFile = "BerksGameMath.xml";
+            xmlFile = "FayetteGameMath.xml";
         } else if (theme == "Sports") {
-            xmlFile = "BerksGameSports.xml";
+            xmlFile = "FayetteGameSports.xml";
         } else if (theme == "Java") {
-            xmlFile = "BerksGameJava.xml";
-        } else if (theme == "Fayette") {
-            xmlFile = "Fayette.xml";
-        }
+            xmlFile = "FayetteGameJava.xml";
+        } 
+   
 
         String q1 = "";
         String a1 = "";
@@ -149,16 +148,16 @@ public class FayetteGame extends JPanel implements ActionListener {
         Boolean a4Boolean = false;
 
         if (theme != "") {
-            berksXML.openReaderXML(xmlFile);
-            q1 = (String) berksXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) berksXML.ReadObject();
-            a1 = (String) berksXML.ReadObject();
-            a2Boolean = (Boolean) berksXML.ReadObject();
-            a2 = (String) berksXML.ReadObject();
-            a3Boolean = (Boolean) berksXML.ReadObject();
-            a3 = (String) berksXML.ReadObject();
-            a4Boolean = (Boolean) berksXML.ReadObject();
-            a4 = (String) berksXML.ReadObject();
+            fayetteXML.openReaderXML(xmlFile);
+            q1 = (String) fayetteXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            a1Boolean = (Boolean) fayetteXML.ReadObject();
+            a1 = (String) fayetteXML.ReadObject();
+            a2Boolean = (Boolean) fayetteXML.ReadObject();
+            a2 = (String) fayetteXML.ReadObject();
+            a3Boolean = (Boolean) fayetteXML.ReadObject();
+            a3 = (String) fayetteXML.ReadObject();
+            a4Boolean = (Boolean) fayetteXML.ReadObject();
+            a4 = (String) fayetteXML.ReadObject();
         }
         displayQuestion.setText(q1);
 
