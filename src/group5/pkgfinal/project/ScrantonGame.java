@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * Scranton Game Multiple Choice Game
+ * Scranton Game
  */
 public class ScrantonGame extends JPanel implements ActionListener {
 
@@ -34,35 +34,34 @@ public class ScrantonGame extends JPanel implements ActionListener {
     JButton backToMap;
     JLabel displayQuestion;
     ButtonGroup group;
-
+    
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
-    JLabel ScrantonScore;
+    JLabel berksScore;
 
     RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
 
     Boolean scored;
 
-    XML_240 ScrantonXML;
+    XML_240 berksXML;
     String xmlFile, theme;
 
     GameScore gameScore;
 
     //constructor
-    public ScrantonGame(GameScore gameScore,JLabel score) {
+    public ScrantonGame() {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
-        ScrantonScore = score;
         this.gameScore = gameScore;
-        ScrantonXML = new XML_240();// creates the 240 class that reads and writes XML
+        berksXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
 
         //Adds a fact about the campus to the panel
-        funFact = new JLabel("Fun Fact! This Branch Campus is a 45-acre");
+        funFact = new JLabel("Fun Fact! This Campus was established in 1958");
         add(funFact);
         funFact.setBounds(new Rectangle(10, 10, 400, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -117,10 +116,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
-        createQuestions("");
+        createQuestions("Scranton");
     }
 
-    //Sets background image
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ScrantonImage, 0, 0, this);
@@ -130,11 +128,13 @@ public class ScrantonGame extends JPanel implements ActionListener {
     public void createQuestions(String inputTheme) {
         theme = inputTheme;
         if (theme == "Math") {
-            xmlFile = "ScrantonGameMath.xml";
+            xmlFile = "BerksGameMath.xml";
         } else if (theme == "Sports") {
-            xmlFile = "ScrantonGameSports.xml";
+            xmlFile = "BerksGameSports.xml";
         } else if (theme == "Java") {
-            xmlFile = "ScrantonGameJava.xml";
+            xmlFile = "BerksGameJava.xml";
+        } else if (theme == "Scranton") {
+            xmlFile = "Scranton.xml";
         }
 
         String q1 = "";
@@ -149,16 +149,16 @@ public class ScrantonGame extends JPanel implements ActionListener {
         Boolean a4Boolean = false;
 
         if (theme != "") {
-            ScrantonXML.openReaderXML(xmlFile);
-            q1 = (String) ScrantonXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) ScrantonXML.ReadObject();
-            a1 = (String) ScrantonXML.ReadObject();
-            a2Boolean = (Boolean) ScrantonXML.ReadObject();
-            a2 = (String) ScrantonXML.ReadObject();
-            a3Boolean = (Boolean) ScrantonXML.ReadObject();
-            a3 = (String) ScrantonXML.ReadObject();
-            a4Boolean = (Boolean) ScrantonXML.ReadObject();
-            a4 = (String) ScrantonXML.ReadObject();
+            berksXML.openReaderXML(xmlFile);
+            q1 = (String) berksXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            a1Boolean = (Boolean) berksXML.ReadObject();
+            a1 = (String) berksXML.ReadObject();
+            a2Boolean = (Boolean) berksXML.ReadObject();
+            a2 = (String) berksXML.ReadObject();
+            a3Boolean = (Boolean) berksXML.ReadObject();
+            a3 = (String) berksXML.ReadObject();
+            a4Boolean = (Boolean) berksXML.ReadObject();
+            a4 = (String) berksXML.ReadObject();
         }
         displayQuestion.setText(q1);
 
@@ -172,7 +172,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
         multipleChoice3.changeIsCorrect(a3Boolean);
         multipleChoice4.changeIsCorrect(a4Boolean);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -182,7 +182,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
             if (multipleChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
-            ScrantonScore.setText("Score: " + gameScore.score);
+            berksScore.setText("Score: " + gameScore.score);
             System.out.println(multipleChoice1.isTrue);
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
@@ -197,7 +197,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
             }
             //updates the score based off the answer
-            ScrantonScore.setText("Score: " + gameScore.score);
+            berksScore.setText("Score: " + gameScore.score);
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
@@ -211,7 +211,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            ScrantonScore.setText("Score: " + gameScore.score);
+            berksScore.setText("Score: " + gameScore.score);
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
@@ -225,7 +225,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            ScrantonScore.setText("Score: " + gameScore.score);
+            berksScore.setText("Score: " + gameScore.score);
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);
