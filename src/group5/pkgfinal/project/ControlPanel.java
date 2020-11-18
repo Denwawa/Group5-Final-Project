@@ -80,7 +80,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         createComponentsThatWillBeSwapped();
         setFocusable(true);
         addKeyListener(this);
-        i=0;
+        i = 0;
 
     }
 
@@ -120,8 +120,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         add(showScore);
         showScore.setBounds(new Rectangle(10, 620, 200, 30));
         showScore.setForeground(Color.orange);
-        
-   
+
     }
 
     //Put your class here so they can be used to switch between panels
@@ -161,9 +160,6 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
-        
-  
-        
 
     }
 
@@ -252,7 +248,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
         //Goes to the Main Map through the play button and starts the timer
         if (obj == playButton) {
-            
+
             removeAll();
             addTimerAndGame();//adds timer
             add(mainMap);
@@ -317,7 +313,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             resetGame();
             removeAll();
             tim.stop();
-           // add(timeCount);
+            // add(timeCount);
             //add(showScore);
             add(gameOver);
             showScore.setText("Score: ");

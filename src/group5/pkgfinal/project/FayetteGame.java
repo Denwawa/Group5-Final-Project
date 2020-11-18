@@ -50,7 +50,7 @@ public class FayetteGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public FayetteGame(GameScore gameScore,JLabel score) {
+    public FayetteGame(GameScore gameScore, JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -159,7 +159,7 @@ public class FayetteGame extends JPanel implements ActionListener {
             a3 = (String) fayetteXML.ReadObject();
             a4Boolean = (Boolean) fayetteXML.ReadObject();
             a4 = (String) fayetteXML.ReadObject();
-           
+
         }
         System.out.println(a1);
         displayQuestion.setText(q1);

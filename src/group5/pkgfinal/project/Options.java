@@ -21,12 +21,12 @@ import javax.swing.JPanel;
  *
  * Berks Game
  */
-public class Options extends JPanel{
+public class Options extends JPanel {
 
     //Main menu
     ImageIcon sourceImage1 = new ImageIcon("images/GameOver.jpg");
     Image menuImage = sourceImage1.getImage();
-    
+
     //player and theme images
     ImageIcon sourceLionImage = new ImageIcon("images/Nittany_Lion.jpg");
     ImageIcon sourceFootballImage = new ImageIcon("images/football.jpg");
@@ -34,12 +34,12 @@ public class Options extends JPanel{
     ImageIcon sourceSportsImage = new ImageIcon("images/sports.jpg");
     ImageIcon sourceMathImage = new ImageIcon("images/math.jpg");
     ImageIcon sourceJavaImage = new ImageIcon("images/java.jpg");
-    
+
     //Player Selection Buttons
     JButton lionButton,
             footballButton,
             studentButton;
-    
+
     //Theme Selection Buttons
     JButton sportsButton,
             mathButton,
@@ -47,10 +47,10 @@ public class Options extends JPanel{
 
     //back to the menu button
     JButton backButton;
-    
+
     //Labels for titles,players, and themes
     JLabel playerTitle,
-           themeTitle,
+            themeTitle,
             lionText,
             descriptionText,
             footballText,
@@ -58,29 +58,28 @@ public class Options extends JPanel{
             sportsText,
             mathText,
             javaText;
-    
+
     String sports,
             math,
             java;
-    
+
     String currentTheme;
-    
+
     //constructor
     public Options() {
         super();
         InitialSetUpForOptions();
 
-
     }
-    
-    public void InitialSetUpForOptions(){
+
+    public void InitialSetUpForOptions() {
         setBackground(Color.white);
         setLayout(null);
 
         //Back to the intro panel button
         backButton = new JButton("click here to go back to the Menu Screen");
         add(backButton);
-        backButton.setBounds(new Rectangle(875, 600, 300, 30));      
+        backButton.setBounds(new Rectangle(875, 600, 300, 30));
 
         //Title texts
         playerTitle = new JLabel("Choose a Character");
@@ -93,13 +92,12 @@ public class Options extends JPanel{
         themeTitle.setForeground(Color.white);
         add(themeTitle);
         themeTitle.setBounds(new Rectangle(825, 0, 300, 60));
-        descriptionText = new JLabel ("(Click an icon to select a character and a theme)");
+        descriptionText = new JLabel("(Click an icon to select a character and a theme)");
         descriptionText.setFont(new Font("Century Gothic", Font.BOLD, 12));
         descriptionText.setForeground(Color.white);
         add(descriptionText);
         descriptionText.setBounds(new Rectangle(10, 615, 300, 60));
-      
-        
+
         //player icon options
         lionText = new JLabel("Nittany Lion");
         lionText.setFont(new Font("Century Gothic", Font.BOLD, 42));
@@ -116,7 +114,7 @@ public class Options extends JPanel{
         studentText.setForeground(Color.blue);
         add(studentText);
         studentText.setBounds(new Rectangle(360, 515, 300, 60));
-        
+
         //theme options
         sportsText = new JLabel("Sports");
         sportsText.setFont(new Font("Century Gothic", Font.BOLD, 42));
@@ -133,8 +131,8 @@ public class Options extends JPanel{
         javaText.setForeground(Color.orange);
         add(javaText);
         javaText.setBounds(new Rectangle(860, 515, 300, 60));
-        
-         //Character Buttons
+
+        //Character Buttons
         lionButton = new JButton(sourceLionImage);
         add(lionButton);
         lionButton.setBounds(new Rectangle(200, 80, 80, 150));
@@ -144,8 +142,8 @@ public class Options extends JPanel{
         studentButton = new JButton(sourceStudentImage);
         add(studentButton);
         studentButton.setBounds(new Rectangle(200, 480, 80, 150));
-        
-         //Theme Buttons
+
+        //Theme Buttons
         sportsButton = new JButton(sourceSportsImage);
         add(sportsButton);
         sportsButton.setBounds(new Rectangle(600, 80, 150, 150));
@@ -155,15 +153,12 @@ public class Options extends JPanel{
         javaButton = new JButton(sourceJavaImage);
         add(javaButton);
         javaButton.setBounds(new Rectangle(600, 480, 150, 150));
-        
+
     }
-    
-    
-       
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(menuImage, 0, 0, this);
     }
-
 
 }

@@ -50,7 +50,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public MontAltoGame(GameScore gameScore,JLabel score) {
+    public MontAltoGame(GameScore gameScore, JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";

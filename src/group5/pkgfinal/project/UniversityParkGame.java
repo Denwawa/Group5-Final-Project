@@ -31,44 +31,43 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     //Main Penn State map Image
     ImageIcon sourceUnivParkImage1 = new ImageIcon("images/University_Park.jpg");
     Image univParkImage = sourceUnivParkImage1.getImage();
-    
 
     //back to the menu button
     JButton backToMap;
-    
+
     JButton b1;
     GameScore gamescore;
     int limit = 0;
     int delay = 0;
     int score;
-    
+
     JProgressBar pbVertical;
     Timer tim;
-    
+
     int progressBarX = 1150, progressBarY = 0;
     int progressBarWidth = 50, progressBarHeight = 600;
     int scoreBarX = 10, scoreBarY = 520;
     int buttonX, buttonY;
     int buttonWidth = 200, buttonHeight = 100;
-    
+
     int sizeDecrement = 2;
-    
-    JLabel universityParkScore; 
+
+    JLabel universityParkScore;
     Boolean scored;
 
     XML_240 universityParkXML;
     String xmlFile, theme;
 
     GameScore gameScore;
-    
+
     JLabel funFact;
 
     //constructor
-    public UniversityParkGame(GameScore gameScore,JLabel score) {
+    public UniversityParkGame(GameScore gameScore, JLabel score) {
         super();
         setBackground(Color.white);
         setLayout(null);
-        
+
         theme = "";
         scored = false;
         universityParkScore = score;
@@ -90,18 +89,17 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         addKeyListener((KeyListener) this);
         requestFocusInWindow();
         b1.addActionListener((ActionListener) this);
-        
+
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
-        
+
         //Adds a fact about the campus to the panel
         funFact = new JLabel("Penn State’s Beaver Stadium is the 4th largest stadium in the world.");
         add(funFact);
         funFact.setBounds(new Rectangle(300, 615, 550, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
         funFact.setForeground(Color.blue);
-
 
     }
 
@@ -112,7 +110,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         g.drawString("Press Spacebar to start the game", 10, 540);
         g.drawString("You have 60 seconds to keep clicking on the button to score", 10, 560);
     }
-    
+
     @Override
     public void keyTyped(KeyEvent ke) {
 
@@ -127,7 +125,6 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         if (key == KeyEvent.VK_SPACE) {
             // enable the button
             b1.setEnabled(true);
-  
 
             // Add a listener object
             ActionListener listener = new ActionListener() {
@@ -172,8 +169,8 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
             tim.start();
         }
     }
-    
-        public void createClickMeIcon(String inputTheme) {
+
+    public void createClickMeIcon(String inputTheme) {
         theme = inputTheme;
         if (theme == "Math") {
             xmlFile = "UniversityParkGameMath.xml";
@@ -182,18 +179,17 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         } else if (theme == "Java") {
             xmlFile = "UniversityParkGameJava.xml";
         }
-        
+
         if (theme != "") {
             universityParkXML.openReaderXML(xmlFile);
-            
-        String gameThemeName = (String) universityParkXML.ReadObject();
-         ImageIcon gameImage = new ImageIcon(gameThemeName);
-        b1 = new JButton(gameImage);
-        b1.setBounds(100, 100, buttonWidth, buttonHeight);
-        b1.setEnabled(false);
-        add(b1);
+
+            String gameThemeName = (String) universityParkXML.ReadObject();
+            ImageIcon gameImage = new ImageIcon(gameThemeName);
+            b1 = new JButton(gameImage);
+            b1.setBounds(100, 100, buttonWidth, buttonHeight);
+            b1.setEnabled(false);
+            add(b1);
         }
-        
 
     }
 
@@ -206,11 +202,11 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     public void actionPerformed(ActionEvent event) {
         Object obj = event.getSource();
         if (obj == b1) {
-            if(buttonHeight > 40) {
-                buttonWidth -= sizeDecrement*2;
+            if (buttonHeight > 40) {
+                buttonWidth -= sizeDecrement * 2;
                 buttonHeight -= sizeDecrement;
             } else {
-                buttonWidth -= sizeDecrement/2;
+                buttonWidth -= sizeDecrement / 2;
             }
             score++;
             repaint();

@@ -21,21 +21,21 @@ import javax.swing.JPanel;
  * @author theodore
  */
 public class MainMap extends JPanel implements ActionListener {
-    
+
     //options class
     Options options;
     //images of characters
     ImageIcon sourceLionImage = new ImageIcon("images/Nittany_Lion.jpg");
     ImageIcon sourceFootballImage = new ImageIcon("images/football.jpg");
     ImageIcon sourceStudentImage = new ImageIcon("images/student.jpg");
-    
+
     //back to the menu button
     JButton backButton;
 
     //Main Penn State map Image
     ImageIcon sourceImage1 = new ImageIcon("images/Penn_State_Map.jpg");
     Image myImage1 = sourceImage1.getImage();
-    
+
     ImageIcon worldCampusImage = new ImageIcon("images/WorldCampus.jpg");
 
     //Game Panels to be added to map
@@ -48,13 +48,13 @@ public class MainMap extends JPanel implements ActionListener {
             gameOverGame;
 
     //Rectangles for intersection. Used for when the player intersects with the campus.
-    Rectangle univParkRctngle, wrldCmpRctngle, brksRctngle, scrantonRctngle, fytteRctngle,montAltoRctngle, gameOverRctngle;
+    Rectangle univParkRctngle, wrldCmpRctngle, brksRctngle, scrantonRctngle, fytteRctngle, montAltoRctngle, gameOverRctngle;
 
     //adds the player
     JButton player;
     Rectangle playerRctngle;
     int vertical, horizontal;
-    
+
     GameScore gameScore;
 
     //Game Classes
@@ -93,7 +93,6 @@ public class MainMap extends JPanel implements ActionListener {
         univParkGame.setBounds(new Rectangle(575, 365, 30, 30));
 
         //World Campus
- 
         worldCampGame = new JButton(worldCampusImage);
         worldCampGame.setText("World Campus");
         worldCampGame.setHorizontalTextPosition(AbstractButton.CENTER);
@@ -117,13 +116,12 @@ public class MainMap extends JPanel implements ActionListener {
         fayetteGame.setBackground(Color.red);
         add(fayetteGame);
         fayetteGame.setBounds(new Rectangle(217, 580, 30, 30));
-        
+
         //Mont Alto Campus
         montAltoGame = new JButton("Mont Alto");
         montAltoGame.setBackground(Color.orange);
         add(montAltoGame);
         montAltoGame.setBounds(new Rectangle(632, 605, 30, 30));
-
 
         //Game Over Button
         gameOverGame = new JButton("Game Over");
@@ -131,7 +129,6 @@ public class MainMap extends JPanel implements ActionListener {
         add(gameOverGame);
         gameOverGame.setBounds(new Rectangle(1050, 50, 100, 100));
         gameOverGame.addActionListener(this);
-        
 
         setFocusable(true);
         requestFocusInWindow();
@@ -214,57 +211,53 @@ public class MainMap extends JPanel implements ActionListener {
 
         return playerRctngle.intersects(fytteRctngle);
     }
-    
+
     public boolean ifIntersectsMontAltoGame() {
         montAltoRctngle = montAltoGame.getBounds();
         playerRctngle = player.getBounds();
 
         return playerRctngle.intersects(montAltoRctngle);
     }
-    
+
     //change to Penn State Nittany Lion for Player
-    public void ChangeToLionIcon(){
+    public void ChangeToLionIcon() {
         remove(player);
         player = new JButton(sourceLionImage);
         add(player);
         player.setBounds(new Rectangle(horizontal, vertical, 70, 150));
     }
+
     //change to Barkley for Player
-    public void ChangeToFootballIcon(){
+    public void ChangeToFootballIcon() {
         remove(player);
         player = new JButton(sourceFootballImage);
         add(player);
         player.setBounds(new Rectangle(horizontal, vertical, 70, 150));
     }
-    
+
     //change to Penn State Nittany Lion for Player
-    public void ChangeToStudentIcon(){
+    public void ChangeToStudentIcon() {
         remove(player);
         player = new JButton(sourceStudentImage);
         add(player);
         player.setBounds(new Rectangle(horizontal, vertical, 70, 150));
     }
-    
+
     //Put your Game Class here so they can be used to switch between panels
     public void CreateGamesThatWillBeSwapped() {
 
     }
-    
-
 
     //Draws the penn state map
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(myImage1, 0, 0, this);
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent eventMap) {
         Object obj = eventMap.getSource();
-        
 
     }
-
 
 }
