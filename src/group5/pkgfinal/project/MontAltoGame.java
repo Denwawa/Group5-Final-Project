@@ -22,19 +22,19 @@ import javax.swing.JTextField;
 
 /**
  *
- * Mont Alto Game
+ * Berks Game Multiple Choice Game
  */
 public class MontAltoGame extends JPanel implements ActionListener {
 
     //Main Penn State map Image
-    ImageIcon sourceScrantonImage1 = new ImageIcon("images/MontAlto.jpg");
-    Image MontAltoImage = sourceScrantonImage1.getImage();
+    ImageIcon sourceBerksImage1 = new ImageIcon("images/MontAlto.jpg");
+    Image berksImage = sourceBerksImage1.getImage();
 
     //back to the menu button
     JButton backToMap;
     JLabel displayQuestion;
     ButtonGroup group;
-    
+
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
@@ -44,19 +44,20 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
     Boolean scored;
 
-    XML_240 berksXML;
+    XML_240 montAltoXML;
     String xmlFile, theme;
 
     GameScore gameScore;
 
     //constructor
-    public MontAltoGame() {
+    public MontAltoGame(GameScore gameScore,JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
+        berksScore = score;
         this.gameScore = gameScore;
-        berksXML = new XML_240();// creates the 240 class that reads and writes XML
+        montAltoXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
 
@@ -116,25 +117,24 @@ public class MontAltoGame extends JPanel implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
-        createQuestions("Mont Alto");
+        createQuestions("");
     }
 
+    //Sets background image
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(MontAltoImage, 0, 0, this);
+        g.drawImage(berksImage, 0, 0, this);
     }
 
     //Fills in the missing text for the questions and answers in the constructor.
     public void createQuestions(String inputTheme) {
         theme = inputTheme;
         if (theme == "Math") {
-            xmlFile = "BerksGameMath.xml";
+            xmlFile = "MontAltoGameMath.xml";
         } else if (theme == "Sports") {
-            xmlFile = "BerksGameSports.xml";
+            xmlFile = "MontAltoGameSports.xml";
         } else if (theme == "Java") {
-            xmlFile = "BerksGameJava.xml";
-        } else if (theme == "MontAlto") {
-            xmlFile = "MontAlto.xml";
+            xmlFile = "MontAltoGameJava.xml";
         }
 
         String q1 = "";
@@ -149,16 +149,16 @@ public class MontAltoGame extends JPanel implements ActionListener {
         Boolean a4Boolean = false;
 
         if (theme != "") {
-            berksXML.openReaderXML(xmlFile);
-            q1 = (String) berksXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) berksXML.ReadObject();
-            a1 = (String) berksXML.ReadObject();
-            a2Boolean = (Boolean) berksXML.ReadObject();
-            a2 = (String) berksXML.ReadObject();
-            a3Boolean = (Boolean) berksXML.ReadObject();
-            a3 = (String) berksXML.ReadObject();
-            a4Boolean = (Boolean) berksXML.ReadObject();
-            a4 = (String) berksXML.ReadObject();
+            montAltoXML.openReaderXML(xmlFile);
+            q1 = (String) montAltoXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            a1Boolean = (Boolean) montAltoXML.ReadObject();
+            a1 = (String) montAltoXML.ReadObject();
+            a2Boolean = (Boolean) montAltoXML.ReadObject();
+            a2 = (String) montAltoXML.ReadObject();
+            a3Boolean = (Boolean) montAltoXML.ReadObject();
+            a3 = (String) montAltoXML.ReadObject();
+            a4Boolean = (Boolean) montAltoXML.ReadObject();
+            a4 = (String) montAltoXML.ReadObject();
         }
         displayQuestion.setText(q1);
 
@@ -172,7 +172,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
         multipleChoice3.changeIsCorrect(a3Boolean);
         multipleChoice4.changeIsCorrect(a4Boolean);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

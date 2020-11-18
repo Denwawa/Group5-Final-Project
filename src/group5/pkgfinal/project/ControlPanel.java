@@ -154,7 +154,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         worldCampus.backToMap.addActionListener(this);
         berks = new BerksGame(gameScore, showScore);
         berks.backToMap.addActionListener(this);
-        montAlto = new MontAltoGame();
+        montAlto = new MontAltoGame(gameScore, showScore);
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
@@ -351,6 +351,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Sports");
             fayette.createQuestions("Sports");
             scranton.createQuestions("Sports");
+            montAlto.createQuestions("Sports");
 
         }
         if (obj == optionsMenu.mathButton) {
@@ -364,6 +365,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Math");
             fayette.createQuestions("Math");
             scranton.createQuestions("Math");
+            montAlto.createQuestions("Math");
 
         }
         if (obj == optionsMenu.javaButton) {
@@ -376,6 +378,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Java");
             fayette.createQuestions("Java");
             scranton.createQuestions("Java");
+            montAlto.createQuestions("Java");
         }
         //Increments Timer
         if (obj == tim) {
