@@ -247,8 +247,7 @@ public class MainMap extends JPanel implements ActionListener {
     
     //Put your Game Class here so they can be used to switch between panels
     public void CreateGamesThatWillBeSwapped() {
-        universityPark = new UniversityParkGame();
-        universityPark.backToMap.addActionListener(this);//adds a back button to return to the main menu
+
     }
     
 

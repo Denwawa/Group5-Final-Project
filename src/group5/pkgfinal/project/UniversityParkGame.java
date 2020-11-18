@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -35,9 +36,10 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     JButton backToMap;
     
     JButton b1;
-    int score = 0;
+    GameScore gamescore;
     int limit = 0;
     int delay = 0;
+    int score;
     
     JProgressBar pbVertical;
     Timer tim;
@@ -51,7 +53,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     int sizeDecrement = 2;
 
     //constructor
-    public UniversityParkGame() {
+    public UniversityParkGame(GameScore gameScore,JLabel score) {
         super();
         setBackground(Color.white);
         setLayout(null);

@@ -144,7 +144,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         instructionsMenu.backButton.addActionListener(this);//adds a back button to return to the main menu
 
         //creates object of each panel for game and adds a back button
-        universityPark = new UniversityParkGame();
+        universityPark = new UniversityParkGame(gameScore, showScore);
         universityPark.backToMap.addActionListener(this);
         scranton = new ScrantonGame(gameScore, showScore);
         scranton.backToMap.addActionListener(this);
@@ -158,6 +158,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
+        
+  
         
 
     }
