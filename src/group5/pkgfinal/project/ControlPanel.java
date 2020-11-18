@@ -349,6 +349,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
             //sets all the classes to the Sports theme by loading the proper xml file to the classes after the theme is selected.
             berks.createQuestions("Sports");
+            fayette.createQuestions("Sports");
+            scranton.createQuestions("Sports");
 
         }
         if (obj == optionsMenu.mathButton) {
@@ -360,6 +362,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
             //sets all the classes to the Math theme by loading the proper xml file to the classes after the theme is selected.
             berks.createQuestions("Math");
+            fayette.createQuestions("Math");
+            scranton.createQuestions("Math");
 
         }
         if (obj == optionsMenu.javaButton) {
@@ -370,6 +374,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
             //sets all the classes to the Java theme by loading the proper xml file to the classes after the theme is selected.
             berks.createQuestions("Java");
+            fayette.createQuestions("Java");
+            scranton.createQuestions("Java");
         }
         //Increments Timer
         if (obj == tim) {
