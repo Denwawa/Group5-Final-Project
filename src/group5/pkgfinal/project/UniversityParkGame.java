@@ -31,6 +31,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     //Main Penn State map Image
     ImageIcon sourceUnivParkImage1 = new ImageIcon("images/University_Park.jpg");
     Image univParkImage = sourceUnivParkImage1.getImage();
+    
 
     //back to the menu button
     JButton backToMap;
@@ -51,6 +52,16 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     int buttonWidth = 200, buttonHeight = 100;
     
     int sizeDecrement = 2;
+    
+    JLabel universityParkScore; 
+    Boolean scored;
+
+    XML_240 universityParkXML;
+    String xmlFile, theme;
+
+    GameScore gameScore;
+    
+    JLabel funFact;
 
     //constructor
     public UniversityParkGame(GameScore gameScore,JLabel score) {
@@ -58,10 +69,12 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         setBackground(Color.white);
         setLayout(null);
         
-        b1 = new JButton("click me");
-        b1.setBounds(100, 100, buttonWidth, buttonHeight);
-        b1.setEnabled(false);
-        add(b1);
+        theme = "";
+        scored = false;
+        universityParkScore = score;
+        this.gameScore = gameScore;
+        universityParkXML = new XML_240();// creates the 240 class that reads and writes XML
+        createClickMeIcon("Math");
 
         // Progress Bar
         pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 60);
@@ -81,6 +94,14 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
+        
+        //Adds a fact about the campus to the panel
+        funFact = new JLabel("Penn State’s Beaver Stadium is the 4th largest stadium in the world.");
+        add(funFact);
+        funFact.setBounds(new Rectangle(300, 615, 550, 30));
+        funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        funFact.setForeground(Color.blue);
+
 
     }
 
@@ -149,6 +170,30 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
             tim = new Timer(delay / 10, listener);
             tim.start();
         }
+    }
+    
+        public void createClickMeIcon(String inputTheme) {
+        theme = inputTheme;
+        if (theme == "Math") {
+            xmlFile = "UniversityParkGameMath.xml";
+        } else if (theme == "Sports") {
+            xmlFile = "UniversityParkGameSports.xml";
+        } else if (theme == "Java") {
+            xmlFile = "UniversityParkGameJava.xml";
+        }
+        
+        if (theme != "") {
+            universityParkXML.openReaderXML(xmlFile);
+            
+        String gameThemeName = (String) universityParkXML.ReadObject();
+         ImageIcon gameImage = new ImageIcon(gameThemeName);
+        b1 = new JButton(gameImage);
+        b1.setBounds(100, 100, buttonWidth, buttonHeight);
+        b1.setEnabled(false);
+        add(b1);
+        }
+        
+
     }
 
     @Override

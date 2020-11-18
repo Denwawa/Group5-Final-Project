@@ -117,7 +117,7 @@ public class FayetteGame extends JPanel implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
-        createQuestions("");
+        createQuestions("Math");//sets default to Math
     }
 
     //Sets background image

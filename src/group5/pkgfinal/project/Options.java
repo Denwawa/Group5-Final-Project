@@ -113,7 +113,7 @@ public class Options extends JPanel{
         footballText.setBounds(new Rectangle(305, 325, 300, 60));
         studentText = new JLabel("Student");
         studentText.setFont(new Font("Century Gothic", Font.BOLD, 42));
-        studentText.setForeground(Color.orange);
+        studentText.setForeground(Color.blue);
         add(studentText);
         studentText.setBounds(new Rectangle(360, 515, 300, 60));
         
@@ -125,7 +125,7 @@ public class Options extends JPanel{
         sportsText.setBounds(new Rectangle(855, 125, 300, 60));
         mathText = new JLabel("Math");
         mathText.setFont(new Font("Century Gothic", Font.BOLD, 42));
-        mathText.setForeground(Color.orange);
+        mathText.setForeground(Color.blue);//default
         add(mathText);
         mathText.setBounds(new Rectangle(865, 325, 300, 60));
         javaText = new JLabel("Java");
