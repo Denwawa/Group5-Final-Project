@@ -2,11 +2,11 @@
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
 <string>What is 20 x 30?</string>
 <boolean>false</boolean>
-<string>6200"</string>
+<string>6200</string>
 <boolean>false</boolean>
-<string>2600"</string>
+<string>2600</string>
 <boolean>false</boolean>
-<string>3600"</string>
+<string>3600</string>
 <boolean>true</boolean>
-<string>1200"</string>
+<string>1200</string>
 </java>

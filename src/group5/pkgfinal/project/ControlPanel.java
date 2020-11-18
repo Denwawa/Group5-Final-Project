@@ -148,7 +148,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         universityPark.backToMap.addActionListener(this);
         scranton = new ScrantonGame(gameScore, showScore);
         scranton.backToMap.addActionListener(this);
-        fayette = new FayetteGame();
+        fayette = new FayetteGame(gameScore, showScore);
         fayette.backToMap.addActionListener(this);
         worldCampus = new WorldCampusGame(gameScore, showScore);
         worldCampus.backToMap.addActionListener(this);

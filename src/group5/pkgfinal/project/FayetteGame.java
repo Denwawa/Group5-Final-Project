@@ -22,19 +22,19 @@ import javax.swing.JTextField;
 
 /**
  *
- * Scranton Game
+ * Berks Game Multiple Choice Game
  */
 public class FayetteGame extends JPanel implements ActionListener {
 
     //Main Penn State map Image
-    ImageIcon sourceFayetteImage1 = new ImageIcon("images/Fayette.jpg");
-    Image fayetteImage = sourceFayetteImage1.getImage();
+    ImageIcon sourceBerksImage1 = new ImageIcon("images/Fayette.jpg");
+    Image berksImage = sourceBerksImage1.getImage();
 
     //back to the menu button
     JButton backToMap;
     JLabel displayQuestion;
     ButtonGroup group;
-    
+
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
@@ -50,11 +50,12 @@ public class FayetteGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public FayetteGame() {
+    public FayetteGame(GameScore gameScore,JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
+        berksScore = score;
         this.gameScore = gameScore;
         fayetteXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
@@ -119,9 +120,10 @@ public class FayetteGame extends JPanel implements ActionListener {
         createQuestions("");
     }
 
+    //Sets background image
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(fayetteImage, 0, 0, this);
+        g.drawImage(berksImage, 0, 0, this);
     }
 
     //Fills in the missing text for the questions and answers in the constructor.
@@ -133,8 +135,7 @@ public class FayetteGame extends JPanel implements ActionListener {
             xmlFile = "FayetteGameSports.xml";
         } else if (theme == "Java") {
             xmlFile = "FayetteGameJava.xml";
-        } 
-   
+        }
 
         String q1 = "";
         String a1 = "";
@@ -158,7 +159,9 @@ public class FayetteGame extends JPanel implements ActionListener {
             a3 = (String) fayetteXML.ReadObject();
             a4Boolean = (Boolean) fayetteXML.ReadObject();
             a4 = (String) fayetteXML.ReadObject();
+           
         }
+        System.out.println(a1);
         displayQuestion.setText(q1);
 
         multipleChoice1.changeButtonText(a1);
@@ -171,7 +174,7 @@ public class FayetteGame extends JPanel implements ActionListener {
         multipleChoice3.changeIsCorrect(a3Boolean);
         multipleChoice4.changeIsCorrect(a4Boolean);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
