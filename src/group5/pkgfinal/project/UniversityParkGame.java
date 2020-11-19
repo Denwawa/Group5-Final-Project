@@ -157,6 +157,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
                     if (counter < 1) {
                         tim.stop();
                         JOptionPane.showMessageDialog(null, "Game Over..... Score :" + score);
+                        gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
                     } else {
                         // decrement the counter
                         counter--;

@@ -164,6 +164,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
+        
+
 
     }
 
@@ -305,12 +307,14 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(mainMap);//returns and rebuilds the map
             validate();
             repaint();
+  
         }
         if (obj == gameOver.backToMainMenu) {
             removeAll();
             InitialSetUpForControlPanel(); //rebuild the original ControlPanel again
             validate();
             repaint();
+
         }
         //if the user chooses to end the game
         if (obj == mainMap.gameOverGame) {
