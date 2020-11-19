@@ -150,21 +150,20 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         instructionsMenu.backButton.addActionListener(this);//adds a back button to return to the main menu
 
         //creates object of each panel for game and adds a back button
-        universityPark = new UniversityParkGame(gameScore, showScore);
+        universityPark = new UniversityParkGame(gameScore, showScore, recentPlays, mainMap);
         universityPark.backToMap.addActionListener(this);
-        scranton = new ScrantonGame(gameScore, showScore);
+        scranton = new ScrantonGame(gameScore, showScore, recentPlays, mainMap);
         scranton.backToMap.addActionListener(this);
-        fayette = new FayetteGame(gameScore, showScore);
+        fayette = new FayetteGame(gameScore, showScore, recentPlays, mainMap);
         fayette.backToMap.addActionListener(this);
-        worldCampus = new WorldCampusGame(gameScore, showScore);
+        worldCampus = new WorldCampusGame(gameScore, showScore, recentPlays);
         worldCampus.backToMap.addActionListener(this);
-        berks = new BerksGame(gameScore, showScore,recentPlays,mainMap);
+        berks = new BerksGame(gameScore, showScore, recentPlays, mainMap);
         berks.backToMap.addActionListener(this);
-        montAlto = new MontAltoGame(gameScore, showScore, recentPlays);
+        montAlto = new MontAltoGame(gameScore, showScore, recentPlays, mainMap);
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
-        
 
     }
 
@@ -306,7 +305,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(mainMap);//returns and rebuilds the map
             validate();
             repaint();
-  
+
         }
         if (obj == gameOver.backToMainMenu) {
             removeAll();
@@ -366,7 +365,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
         }
         if (obj == optionsMenu.mathButton) {
-            optionsMenu.currentTheme = "Math";    
+            optionsMenu.currentTheme = "Math";
             optionsMenu.sportsText.setForeground(Color.orange);
             optionsMenu.javaText.setForeground(Color.orange);
             optionsMenu.mathText.setForeground(Color.blue);

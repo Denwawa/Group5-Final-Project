@@ -59,15 +59,18 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     String xmlFile, theme;
 
     GameScore gameScore;
+    MainMap mainMap;
 
     JLabel funFact;
+    JLabel recentPlays;
 
     //constructor
-    public UniversityParkGame(GameScore gameScore, JLabel score) {
+    public UniversityParkGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
         setBackground(Color.white);
         setLayout(null);
-
+        this.mainMap = mainMap;
+        this.recentPlays = recentPlays;
         theme = "";
         scored = false;
         universityParkScore = score;
@@ -157,7 +160,11 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
                     if (counter < 1) {
                         tim.stop();
                         JOptionPane.showMessageDialog(null, "Game Over..... Score :" + score);
+                        recentPlays.setText("Recent Plays: " + gameScore.listGames());
                         gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+                        if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                            mainMap.showWorldCampus();
+                        }
                     } else {
                         // decrement the counter
                         counter--;

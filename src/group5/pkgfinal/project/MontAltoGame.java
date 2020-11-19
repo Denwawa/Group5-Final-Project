@@ -33,7 +33,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
     //back to the menu button
     JButton backToMap;
     JLabel displayQuestion;
-    JLabel montAltoPlayed;
+    JLabel recentPlays;
     ButtonGroup group;
 
     JRadioButton answer1, answer2, answer3, answer4;
@@ -50,17 +50,18 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
     GameScore gameScore;
 
-    String game = "Mont Alto Game";
+    MainMap mainMap;
 
     //constructor
-    public MontAltoGame(GameScore gameScore, JLabel score, JLabel recentPlays) {
+    public MontAltoGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
         berksScore = score;
         this.gameScore = gameScore;
-        montAltoPlayed = recentPlays;
+        this.mainMap = mainMap;
+        this.recentPlays = recentPlays;
         montAltoXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
@@ -191,13 +192,16 @@ public class MontAltoGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             berksScore.setText("Score: " + gameScore.score);
-            montAltoPlayed.setText("Score: " + game);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
             remove(answer3);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer2 && scored == false) {
@@ -206,13 +210,16 @@ public class MontAltoGame extends JPanel implements ActionListener {
             }
             //updates the score based off the answer
             berksScore.setText("Score: " + gameScore.score);
-            montAltoPlayed.setText("Score: " + game);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer3 && scored == false) {
@@ -221,13 +228,16 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
-            montAltoPlayed.setText("Score: " + game);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer4 && scored == false) {
@@ -236,13 +246,16 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
-            montAltoPlayed.setText("Recent Plays: " + game);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);
             remove(answer3);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
     }

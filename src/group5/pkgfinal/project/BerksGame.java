@@ -201,7 +201,7 @@ public class BerksGame extends JPanel implements ActionListener {
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-            if (gameScore.gameComplete == 5) {
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
             }
 

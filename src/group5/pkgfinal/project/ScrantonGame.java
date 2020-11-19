@@ -38,7 +38,8 @@ public class ScrantonGame extends JPanel implements ActionListener {
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
-    JLabel berksScore;
+    JLabel scrantonScore;
+    JLabel recentPlays;
 
     RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
 
@@ -48,15 +49,18 @@ public class ScrantonGame extends JPanel implements ActionListener {
     String xmlFile, theme;
 
     GameScore gameScore;
+    MainMap mainMap;
 
     //constructor
-    public ScrantonGame(GameScore gameScore, JLabel score) {
+    public ScrantonGame(GameScore gameScore, JLabel score,JLabel recentPlays, MainMap mainMap) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
-        berksScore = score;
+        scrantonScore = score;
         this.gameScore = gameScore;
+        this.recentPlays = recentPlays;
+        this.mainMap = mainMap;
         scrantonXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
@@ -188,14 +192,17 @@ public class ScrantonGame extends JPanel implements ActionListener {
             if (multipleChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
-            berksScore.setText("Score: " + gameScore.score);
-            System.out.println(multipleChoice1.isTrue);
+            scrantonScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
             remove(answer3);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer2 && scored == false) {
@@ -203,13 +210,17 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
             }
             //updates the score based off the answer
-            berksScore.setText("Score: " + gameScore.score);
+            scrantonScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer3 && scored == false) {
@@ -217,13 +228,17 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            berksScore.setText("Score: " + gameScore.score);
+            scrantonScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer4 && scored == false) {
@@ -231,13 +246,17 @@ public class ScrantonGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            berksScore.setText("Score: " + gameScore.score);
+            scrantonScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);
             remove(answer3);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                mainMap.showWorldCampus();
+            }
 
         }
     }

@@ -38,7 +38,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
-    JLabel berksScore;
+    JLabel worldCampusScore;
+    JLabel recentPlays;
 
     RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
 
@@ -50,13 +51,14 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public WorldCampusGame(GameScore gameScore, JLabel score) {
+    public WorldCampusGame(GameScore gameScore, JLabel score, JLabel recentPlays) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
-        berksScore = score;
+        worldCampusScore = score;
         this.gameScore = gameScore;
+        this.recentPlays = recentPlays;
         berksXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
@@ -187,7 +189,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             if (multipleChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
-            berksScore.setText("Score: " + gameScore.score);
+            worldCampusScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             System.out.println(multipleChoice1.isTrue);
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
@@ -202,7 +205,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
             }
             //updates the score based off the answer
-            berksScore.setText("Score: " + gameScore.score);
+            worldCampusScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
@@ -216,7 +220,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            berksScore.setText("Score: " + gameScore.score);
+            worldCampusScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
@@ -230,7 +235,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);
 
             }
-            berksScore.setText("Score: " + gameScore.score);
+            worldCampusScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);
