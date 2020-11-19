@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +27,7 @@ public class GameOver extends JPanel {
 
     //back to the menu button
     JButton backToMainMenu;
+    
 
     //constructor
     public GameOver() {
@@ -36,6 +38,8 @@ public class GameOver extends JPanel {
         backToMainMenu = new JButton("click here to restart game");
         add(backToMainMenu);
         backToMainMenu.setBounds(new Rectangle(500, 10, 300, 30));
+        
+
 
     }
 

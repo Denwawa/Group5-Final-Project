@@ -33,6 +33,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
     //back to the menu button
     JButton backToMap;
     JLabel displayQuestion;
+    JLabel montAltoPlayed;
     ButtonGroup group;
 
     JRadioButton answer1, answer2, answer3, answer4;
@@ -48,15 +49,19 @@ public class MontAltoGame extends JPanel implements ActionListener {
     String xmlFile, theme;
 
     GameScore gameScore;
+   
+    String game = "Mont Alto Game";
+ 
 
     //constructor
-    public MontAltoGame(GameScore gameScore, JLabel score) {
+    public MontAltoGame(GameScore gameScore, JLabel score,JLabel recentPlays) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
         berksScore = score;
         this.gameScore = gameScore;
+        montAltoPlayed = recentPlays;
         montAltoXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
@@ -183,7 +188,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             berksScore.setText("Score: " + gameScore.score);
-            System.out.println(multipleChoice1.isTrue);
+            montAltoPlayed.setText("Score: " + game);
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
             remove(answer3);
@@ -198,6 +203,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
             }
             //updates the score based off the answer
             berksScore.setText("Score: " + gameScore.score);
+            montAltoPlayed.setText("Score: " + game);
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
@@ -212,6 +218,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
+            montAltoPlayed.setText("Score: " + game);
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
@@ -226,6 +233,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
+            montAltoPlayed.setText("Recent Plays: " + game);
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);

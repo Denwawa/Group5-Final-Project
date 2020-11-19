@@ -62,6 +62,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
     int i = 0;
     JLabel timeCount = new JLabel("Timer will start after map is entered.");
     JLabel showScore = new JLabel("Score");
+    JLabel recentPlays = new JLabel("Recent Plays: ");
 
     //constructor
     public ControlPanel() {
@@ -120,6 +121,9 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         add(showScore);
         showScore.setBounds(new Rectangle(10, 620, 200, 30));
         showScore.setForeground(Color.orange);
+        add(recentPlays);
+        recentPlays.setBounds(new Rectangle(10, 580, 200, 30));
+        recentPlays.setForeground(Color.orange);
 
     }
 
@@ -154,9 +158,9 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         fayette.backToMap.addActionListener(this);
         worldCampus = new WorldCampusGame(gameScore, showScore);
         worldCampus.backToMap.addActionListener(this);
-        berks = new BerksGame(gameScore, showScore);
+        berks = new BerksGame(gameScore, showScore,recentPlays);
         berks.backToMap.addActionListener(this);
-        montAlto = new MontAltoGame(gameScore, showScore);
+        montAlto = new MontAltoGame(gameScore, showScore, recentPlays);
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
@@ -318,6 +322,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(gameOver);
             showScore.setText("Score: ");
             timeCount.setText("Time: ");
+            recentPlays.setText("Recent Plays: ");
             validate();
             repaint();
 
@@ -359,7 +364,6 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         }
         if (obj == optionsMenu.mathButton) {
             optionsMenu.currentTheme = "Math";
-            System.out.println(optionsMenu.currentTheme);
             optionsMenu.sportsText.setForeground(Color.orange);
             optionsMenu.javaText.setForeground(Color.orange);
             optionsMenu.mathText.setForeground(Color.blue);

@@ -38,7 +38,7 @@ public class BerksGame extends JPanel implements ActionListener {
     JRadioButton answer1, answer2, answer3, answer4;
     JTextField displayAnswer;
     JLabel funFact;
-    JLabel berksScore;
+    JLabel berksScore, berksPlayed;
 
     RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
 
@@ -47,15 +47,18 @@ public class BerksGame extends JPanel implements ActionListener {
     XML_240 berksXML;
     String xmlFile, theme;
 
-    GameScore gameScore;
+    GameScore gameScore; 
+    String game = "Berks Game";
+    
 
     //constructor
-    public BerksGame(GameScore gameScore,JLabel score) {
+    public BerksGame(GameScore gameScore,JLabel score,JLabel recentPlays) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
         scored = false;
         berksScore = score;
+        berksPlayed = recentPlays;
         this.gameScore = gameScore;
         berksXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
@@ -182,8 +185,8 @@ public class BerksGame extends JPanel implements ActionListener {
             if (multipleChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
-            berksScore.setText("Score: " + gameScore.score);
-            System.out.println(multipleChoice1.isTrue);
+            berksScore.setText("Score: " + gameScore.score);//increments score
+            berksPlayed.setText("Score:" + game);
             displayAnswer.setText(multipleChoice1.isCorrect);
             remove(answer2);
             remove(answer3);
@@ -198,6 +201,7 @@ public class BerksGame extends JPanel implements ActionListener {
             }
             //updates the score based off the answer
             berksScore.setText("Score: " + gameScore.score);
+            berksPlayed.setText("Score:" + game);
             displayAnswer.setText(multipleChoice2.isCorrect);
             remove(answer1);
             remove(answer3);
@@ -212,6 +216,7 @@ public class BerksGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
+            berksPlayed.setText("Score:" + game);
             displayAnswer.setText(multipleChoice3.isCorrect);
             remove(answer1);
             remove(answer2);
@@ -226,6 +231,7 @@ public class BerksGame extends JPanel implements ActionListener {
 
             }
             berksScore.setText("Score: " + gameScore.score);
+            berksPlayed.setText("Score:" + game);
             displayAnswer.setText(multipleChoice4.isCorrect);
             remove(answer1);
             remove(answer2);
