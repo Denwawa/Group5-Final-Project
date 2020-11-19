@@ -122,7 +122,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         showScore.setBounds(new Rectangle(10, 620, 200, 30));
         showScore.setForeground(Color.orange);
         add(recentPlays);
-        recentPlays.setBounds(new Rectangle(10, 580, 200, 30));
+        recentPlays.setBounds(new Rectangle(10, 580, 500, 30));
         recentPlays.setForeground(Color.orange);
 
     }
