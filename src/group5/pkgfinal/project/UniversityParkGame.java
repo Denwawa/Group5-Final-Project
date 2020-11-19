@@ -55,11 +55,10 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         super();
         setBackground(Color.white);
         setLayout(null);
-        b1 = new JButton("click me");
-        add(b1);
-        b1.setBounds(new Rectangle(50, 50, boxWidth, boxHeight));
+        universityParkXML = new XML_240();// creates the 240 class that reads and writes XML
         this.gameScore = gameScore;
         this.universityParkScore = score;
+        createClickMeIcon("Math");
         //adds a back button to the game
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
@@ -98,6 +97,28 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         g.drawString("Press Spacebar to start the game", 10, 540);
         g.drawString("You have 60 seconds to keep clicking on the button to score", 10, 560);
         g.drawImage(universityParkImage, 0, 0, this);
+    }
+
+    public void createClickMeIcon(String inputTheme) {
+        theme = inputTheme;
+        if (theme == "Math") {
+            xmlFile = "UniversityParkGameMath.xml";
+        } else if (theme == "Sports") {
+            xmlFile = "UniversityParkGameSports.xml";
+        } else if (theme == "Java") {
+            xmlFile = "UniversityParkGameJava.xml";
+        }
+
+        if (theme != "") {
+            universityParkXML.openReaderXML(xmlFile);
+
+            String gameThemeName = (String) universityParkXML.ReadObject();
+            ImageIcon gameImage = new ImageIcon(gameThemeName);
+            b1 = new JButton(gameImage);
+            add(b1);
+            b1.setBounds(new Rectangle(50, 50, boxWidth, boxHeight));
+        }
+
     }
 
     @Override
@@ -183,27 +204,3 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     }
 
 }
-
-//    public void createClickMeIcon(String inputTheme) {
-//        theme = inputTheme;
-//        if (theme == "Math") {
-//            xmlFile = "UniversityParkGameMath.xml";
-//        } else if (theme == "Sports") {
-//            xmlFile = "UniversityParkGameSports.xml";
-//        } else if (theme == "Java") {
-//            xmlFile = "UniversityParkGameJava.xml";
-//        }
-//
-//        if (theme != "") {
-//            universityParkXML.openReaderXML(xmlFile);
-//
-//            String gameThemeName = (String) universityParkXML.ReadObject();
-//            ImageIcon gameImage = new ImageIcon(gameThemeName);
-//            b1 = new JButton(gameImage);
-//            b1.setBounds(100, 100, buttonWidth, buttonHeight);
-//            b1.setEnabled(false);
-//            add(b1);
-//        }
-//
-//    }
-
