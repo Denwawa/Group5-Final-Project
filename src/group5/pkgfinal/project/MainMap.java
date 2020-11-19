@@ -148,24 +148,24 @@ public class MainMap extends JPanel implements ActionListener {
     }
 
     public void movePlayerLeft() {
-        if (horizontal > 10){
-        horizontal -= 30;
-        player.setBounds(horizontal, vertical, 70, 150);
+        if (horizontal > 10) {
+            horizontal -= 30;
+            player.setBounds(horizontal, vertical, 70, 150);
         }
     }
 
     public void movePlayerUp() {
-        if (vertical > 10){
-        vertical -= 30;
-        player.setBounds(horizontal, vertical, 70, 150);
+        if (vertical > 10) {
+            vertical -= 30;
+            player.setBounds(horizontal, vertical, 70, 150);
         }
 
     }
 
     public void movePlayerDown() {
-        if (vertical < 500){
-        vertical += 30;
-        player.setBounds(horizontal, vertical, 70, 150);
+        if (vertical < 500) {
+            vertical += 30;
+            player.setBounds(horizontal, vertical, 70, 150);
         }
     }
 
