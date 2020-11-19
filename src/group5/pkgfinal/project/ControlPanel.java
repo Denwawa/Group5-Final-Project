@@ -152,6 +152,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         //creates object of each panel for game and adds a back button
         universityPark = new UniversityParkGame(gameScore, showScore, recentPlays, mainMap);
         universityPark.backToMap.addActionListener(this);
+        universityPark.b1.addActionListener(this);
         scranton = new ScrantonGame(gameScore, showScore, recentPlays, mainMap);
         scranton.backToMap.addActionListener(this);
         fayette = new FayetteGame(gameScore, showScore, recentPlays, mainMap);
@@ -276,6 +277,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             validate();
             repaint();
         }
+
         if (obj == scranton.backToMap) {
             remove(scranton);
             add(mainMap);//returns and rebuilds the map
@@ -361,7 +363,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             fayette.createQuestions("Sports");
             scranton.createQuestions("Sports");
             montAlto.createQuestions("Sports");
-            universityPark.createClickMeIcon("Sports");
+            //universityPark.createClickMeIcon("Sports");
 
         }
         if (obj == optionsMenu.mathButton) {
@@ -375,7 +377,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             fayette.createQuestions("Math");
             scranton.createQuestions("Math");
             montAlto.createQuestions("Math");
-            universityPark.createClickMeIcon("Math");
+            //universityPark.createClickMeIcon("Math");
 
         }
         if (obj == optionsMenu.javaButton) {
@@ -389,12 +391,57 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             fayette.createQuestions("Java");
             scranton.createQuestions("Java");
             montAlto.createQuestions("Java");
-            universityPark.createClickMeIcon("Java");
+            //universityPark.createClickMeIcon("Java");
         }
         //Increments Timer
         if (obj == tim) {
             i = i + 1;
             timeCount.setText("Time: " + i);
+        }
+
+        //Source code to lcick me game
+        if (obj == universityPark.buttonTimer) {
+            if (universityPark.j >= 0) {
+                universityPark.pbVertical.setValue(universityPark.j);
+                universityPark.pbVertical.setValue(universityPark.j);
+                universityPark.pbVertical.setString("" + universityPark.j);
+                universityPark.j = universityPark.j - 1;
+
+                remove(universityPark.b1);
+                validate();
+                repaint();
+                universityPark.delay = universityPark.delay - 10;
+                universityPark.buttonTimer.setDelay(universityPark.delay);
+
+                add(universityPark.b1);
+                universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
+            } else {
+                universityPark.gameStart = false;
+                universityPark.gameDone = true;
+                remove(universityPark.b1);
+                validate();
+                repaint();
+                add(universityPark.b1);
+                universityPark.b1.setBounds(new Rectangle(500, 150, 300, 300));
+                universityPark.b1.setText("GAME OVER --- SCORE " + universityPark.universityParkScore);
+
+            }
+
+        }
+
+        if (obj == universityPark.b1 && universityPark.gameStart == true) {
+
+            universityPark.universityParkNumScore++;
+            universityPark.buttonTimer.setDelay(delay);
+            remove(universityPark.b1);
+            validate();
+            repaint();
+
+            add(universityPark.b1);
+            universityPark.boxWidth = universityPark.boxWidth - (int) ((float) universityPark.boxWidth / 10f);
+            universityPark.boxHeight = universityPark.boxHeight - (int) ((float) universityPark.boxHeight / 10f);
+            universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
+
         }
 
     }
@@ -426,6 +473,12 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         if (key == KeyEvent.VK_DOWN) {
             mainMap.movePlayerDown();
             pickGame();
+        }
+        if (key == event.VK_SPACE && universityPark.gameDone == true) {
+            universityPark.gameStart = true;
+            universityPark.buttonTimer.start();
+            universityPark.gameDone = false;
+
         }
     }
 
