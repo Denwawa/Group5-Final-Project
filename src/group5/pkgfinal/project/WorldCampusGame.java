@@ -50,7 +50,7 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public WorldCampusGame(GameScore gameScore,JLabel score) {
+    public WorldCampusGame(GameScore gameScore, JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -120,8 +120,6 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         createQuestions("");
     }
-    
-    
 
     //Sets background image
     public void paintComponent(Graphics g) {
@@ -180,6 +178,10 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
+        if (scored == false) {
+            gameScore.addToList("World Campus Game");
+            System.out.println(gameScore.recentlyPlayed);
+        }
 
         if (obj == answer1 && scored == false) {
             if (multipleChoice1.isTrue == true) {

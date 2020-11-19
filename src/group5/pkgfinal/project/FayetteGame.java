@@ -179,6 +179,10 @@ public class FayetteGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
+        if (scored == false) {
+            gameScore.addToList("Fayette Game");
+            System.out.println(gameScore.recentlyPlayed);
+        }
 
         if (obj == answer1 && scored == false) {
             if (multipleChoice1.isTrue == true) {

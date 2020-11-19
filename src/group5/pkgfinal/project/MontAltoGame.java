@@ -49,12 +49,11 @@ public class MontAltoGame extends JPanel implements ActionListener {
     String xmlFile, theme;
 
     GameScore gameScore;
-   
+
     String game = "Mont Alto Game";
- 
 
     //constructor
-    public MontAltoGame(GameScore gameScore, JLabel score,JLabel recentPlays) {
+    public MontAltoGame(GameScore gameScore, JLabel score, JLabel recentPlays) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -182,6 +181,10 @@ public class MontAltoGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
+        if (scored == false) {
+            gameScore.addToList("Mont Alto Game");
+            System.out.println(gameScore.recentlyPlayed);
+        }
 
         if (obj == answer1 && scored == false) {
             if (multipleChoice1.isTrue == true) {

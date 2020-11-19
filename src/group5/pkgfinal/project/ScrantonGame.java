@@ -50,7 +50,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
     GameScore gameScore;
 
     //constructor
-    public ScrantonGame(GameScore gameScore,JLabel score) {
+    public ScrantonGame(GameScore gameScore, JLabel score) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -159,7 +159,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
             a3 = (String) scrantonXML.ReadObject();
             a4Boolean = (Boolean) scrantonXML.ReadObject();
             a4 = (String) scrantonXML.ReadObject();
-           
+
         }
         System.out.println(a1);
         displayQuestion.setText(q1);
@@ -179,6 +179,10 @@ public class ScrantonGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
+        if (scored == false) {
+            gameScore.addToList("Scranton Game");
+            System.out.println(gameScore.recentlyPlayed);
+        }
 
         if (obj == answer1 && scored == false) {
             if (multipleChoice1.isTrue == true) {
