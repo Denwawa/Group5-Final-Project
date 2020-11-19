@@ -92,14 +92,13 @@ public class MainMap extends JPanel implements ActionListener {
         add(univParkGame);
         univParkGame.setBounds(new Rectangle(575, 365, 30, 30));
 
-        
         //World Campus
         worldCampGame = new JButton(worldCampusImage);
         worldCampGame.setText("World Campus");
         worldCampGame.setHorizontalTextPosition(AbstractButton.CENTER);
         add(worldCampGame);
         worldCampGame.setBounds(new Rectangle(600, 100, 0, 0));
-   
+
         //Berks Campus
         berksGame = new JButton("Berks Campus");
         berksGame.setBackground(Color.pink);
@@ -134,31 +133,40 @@ public class MainMap extends JPanel implements ActionListener {
         setFocusable(true);
         requestFocusInWindow();
     }
-    
+
     //reveals world campus
-    public void showWorldCampus(){
+    public void showWorldCampus() {
         worldCampGame.setBounds(new Rectangle(600, 100, 150, 150));
     }
 
     public void movePlayerRight() {
-        horizontal += 30;
-        player.setBounds(horizontal, vertical, 70, 150);
+        if (horizontal < 1100) {
+            horizontal += 30;
+            player.setBounds(horizontal, vertical, 70, 150);
+        }
+
     }
 
     public void movePlayerLeft() {
+        if (horizontal > 10){
         horizontal -= 30;
         player.setBounds(horizontal, vertical, 70, 150);
+        }
     }
 
     public void movePlayerUp() {
+        if (vertical > 10){
         vertical -= 30;
         player.setBounds(horizontal, vertical, 70, 150);
+        }
 
     }
 
     public void movePlayerDown() {
+        if (vertical < 500){
         vertical += 30;
         player.setBounds(horizontal, vertical, 70, 150);
+        }
     }
 
     public String intersectsWhichCampus() {
