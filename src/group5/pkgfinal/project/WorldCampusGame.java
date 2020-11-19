@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 public class WorldCampusGame extends JPanel implements ActionListener {
 
     //Main Penn State map Image
-    ImageIcon sourceBerksImage1 = new ImageIcon("images/WorldCampus.gif");
+    ImageIcon sourceBerksImage1 = new ImageIcon("images/FindThePerson.jpg");
     Image berksImage = sourceBerksImage1.getImage();
 
     //back to the menu button
@@ -35,17 +35,17 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     JLabel displayQuestion;
     ButtonGroup group;
 
-    JRadioButton answer1, answer2, answer3, answer4;
+    JRadioButton answer1;
     JTextField displayAnswer;
     JLabel funFact;
     JLabel worldCampusScore;
     JLabel recentPlays;
 
-    RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
+    RadioButtonMultipleChoice multipleChoice1;
 
     Boolean scored;
 
-    XML_240 berksXML;
+    XML_240 worldCampusXML;
     String xmlFile, theme;
 
     GameScore gameScore;
@@ -59,7 +59,7 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         worldCampusScore = score;
         this.gameScore = gameScore;
         this.recentPlays = recentPlays;
-        berksXML = new XML_240();// creates the 240 class that reads and writes XML
+        worldCampusXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
         this.setBounds(new Rectangle(600, 100, 50, 50));
@@ -86,41 +86,26 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         displayAnswer = new JTextField();
 
         multipleChoice1 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice2 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice3 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice4 = new RadioButtonMultipleChoice(false, "");
 
         answer1 = multipleChoice1.button;
-        answer2 = multipleChoice2.button;
-        answer3 = multipleChoice3.button;
-        answer4 = multipleChoice4.button;
+
 
         group = new ButtonGroup();
         group.add(answer1);
-        group.add(answer2);
-        group.add(answer3);
-        group.add(answer4);
+  
 
         //Adds all the components to the map
         add(displayQuestion);
         displayQuestion.setBounds(new Rectangle(400, 50, 500, 50));
         add(answer1);
         answer1.setBounds(new Rectangle(500, 150, 300, 50));
-        add(answer2);
-        answer2.setBounds(new Rectangle(500, 250, 300, 50));
-        add(answer3);
-        answer3.setBounds(new Rectangle(500, 350, 300, 50));
-        add(answer4);
-        answer4.setBounds(new Rectangle(500, 450, 300, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
 
         answer1.addActionListener(this);
-        answer2.addActionListener(this);
-        answer3.addActionListener(this);
-        answer4.addActionListener(this);
 
-        createQuestions("");
+
+        createQuestions("Math");
     }
 
     //Sets background image
@@ -133,47 +118,30 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     public void createQuestions(String inputTheme) {
         theme = inputTheme;
         if (theme == "Math") {
-            xmlFile = "BerksGameMath.xml";
+            xmlFile = "WorldCampusGameMath.xml";
         } else if (theme == "Sports") {
-            xmlFile = "BerksGameSports.xml";
+            xmlFile = "WorldCampusGameSports.xml";
         } else if (theme == "Java") {
-            xmlFile = "BerksGameJava.xml";
+            xmlFile = "WorldCampusGameJava.xml";
         }
 
         String q1 = "";
         String a1 = "";
-        String a2 = "";
-        String a3 = "";
-        String a4 = "";
-
+        
         Boolean a1Boolean = false;
-        Boolean a2Boolean = false;
-        Boolean a3Boolean = false;
-        Boolean a4Boolean = false;
+
 
         if (theme != "") {
-            berksXML.openReaderXML(xmlFile);
-            q1 = (String) berksXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) berksXML.ReadObject();
-            a1 = (String) berksXML.ReadObject();
-            a2Boolean = (Boolean) berksXML.ReadObject();
-            a2 = (String) berksXML.ReadObject();
-            a3Boolean = (Boolean) berksXML.ReadObject();
-            a3 = (String) berksXML.ReadObject();
-            a4Boolean = (Boolean) berksXML.ReadObject();
-            a4 = (String) berksXML.ReadObject();
+            worldCampusXML.openReaderXML(xmlFile);
+            q1 = (String) worldCampusXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            a1Boolean = (Boolean) worldCampusXML.ReadObject();
+            a1 = (String) worldCampusXML.ReadObject();
+            
         }
         displayQuestion.setText(q1);
 
         multipleChoice1.changeButtonText(a1);
-        multipleChoice2.changeButtonText(a2);
-        multipleChoice3.changeButtonText(a3);
-        multipleChoice4.changeButtonText(a4);
-
         multipleChoice1.changeIsCorrect(a1Boolean);
-        multipleChoice2.changeIsCorrect(a2Boolean);
-        multipleChoice3.changeIsCorrect(a3Boolean);
-        multipleChoice4.changeIsCorrect(a4Boolean);
     }
 
     @Override
@@ -193,57 +161,12 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             System.out.println(multipleChoice1.isTrue);
             displayAnswer.setText(multipleChoice1.isCorrect);
-            remove(answer2);
-            remove(answer3);
-            remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
 
         }
-        if (obj == answer2 && scored == false) {
-            if (multipleChoice2.isTrue == true) {
-                gameScore.increaseScore(1);
-            }
-            //updates the score based off the answer
-            worldCampusScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice2.isCorrect);
-            remove(answer1);
-            remove(answer3);
-            remove(answer4);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-
-        }
-        if (obj == answer3 && scored == false) {
-            if (multipleChoice3.isTrue == true) {
-                gameScore.increaseScore(1);
-
-            }
-            worldCampusScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice3.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer4);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-
-        }
-        if (obj == answer4 && scored == false) {
-            if (multipleChoice4.isTrue == true) {
-                gameScore.increaseScore(1);
-
-            }
-            worldCampusScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice4.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer3);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
 
         }
     }
-}
+
+

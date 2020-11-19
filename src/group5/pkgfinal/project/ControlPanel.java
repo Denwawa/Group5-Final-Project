@@ -364,6 +364,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             scranton.createQuestions("Sports");
             montAlto.createQuestions("Sports");
             universityPark.createClickMeIcon("Sports");
+            worldCampus.createQuestions("Sports");
 
         }
         if (obj == optionsMenu.mathButton) {
@@ -378,6 +379,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             scranton.createQuestions("Math");
             montAlto.createQuestions("Math");
             universityPark.createClickMeIcon("Math");
+            worldCampus.createQuestions("Math");
 
         }
         if (obj == optionsMenu.javaButton) {
@@ -391,6 +393,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             fayette.createQuestions("Java");
             scranton.createQuestions("Java");
             montAlto.createQuestions("Java");
+            worldCampus.createQuestions("Java");
             universityPark.createClickMeIcon("Java");
         }
         //Increments Timer
