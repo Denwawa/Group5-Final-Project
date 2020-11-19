@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group5.pkgfinal.project;
 
+import group5.pkgfinal.project.GameScore;
+import group5.pkgfinal.project.MainMap;
+import group5.pkgfinal.project.XML_240;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -17,208 +14,196 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
 /**
  *
- * University Park Game
+ * @author theodore nguyen Class: IST 240 Professor Choman Assignment: L09: Lab
+ * Assignment - Java: Click Me Game
  */
 public class UniversityParkGame extends JPanel implements KeyListener, ActionListener {
 
-    //Main Penn State map Image
-    ImageIcon sourceUnivParkImage1 = new ImageIcon("images/University_Park.jpg");
-    Image univParkImage = sourceUnivParkImage1.getImage();
-
-    //back to the menu button
-    JButton backToMap;
+    ImageIcon sourceUniversityParkImage1 = new ImageIcon("images/UniversityPark.jpg");
+    Image universityParkImage = sourceUniversityParkImage1.getImage();
 
     JButton b1;
-    GameScore gamescore;
-    int limit = 0;
+    int universityParkNumScore = 0;
+
+    Timer buttonTimer;
     int delay = 0;
-    int score;
+
+    Boolean gameDone = true;
+    Boolean gameStart = false;
+
+    int boxWidth = 100;
+    int boxHeight = 75;
 
     JProgressBar pbVertical;
-    Timer tim;
+    int j = 60;
 
-    int progressBarX = 1150, progressBarY = 0;
-    int progressBarWidth = 50, progressBarHeight = 600;
-    int scoreBarX = 10, scoreBarY = 520;
-    int buttonX, buttonY;
-    int buttonWidth = 200, buttonHeight = 100;
-
-    int sizeDecrement = 2;
-
-    JLabel universityParkScore;
-    Boolean scored;
-
+    JButton backToMap;
     XML_240 universityParkXML;
     String xmlFile, theme;
+    JLabel universityParkScore;
 
     GameScore gameScore;
     MainMap mainMap;
 
-    JLabel funFact;
-    JLabel recentPlays;
-
-    //constructor
     public UniversityParkGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
         setBackground(Color.white);
         setLayout(null);
-        this.mainMap = mainMap;
-        this.recentPlays = recentPlays;
-        theme = "";
-        scored = false;
-        universityParkScore = score;
+        b1 = new JButton("click me");
+        add(b1);
+        b1.setBounds(new Rectangle(50, 50, boxWidth, boxHeight));
         this.gameScore = gameScore;
-        universityParkXML = new XML_240();// creates the 240 class that reads and writes XML
-        createClickMeIcon("Math");
-
-        // Progress Bar
-        pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 60);
-        pbVertical.setBounds(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
-        pbVertical.setValue(60);
-        pbVertical.setString("Progress Bar");
-        pbVertical.setStringPainted(true);
-        add(pbVertical);
-
-        delay = 10000;
-        tim = new Timer(delay, (ActionListener) this);
-        setFocusable(true);
-        addKeyListener((KeyListener) this);
-        requestFocusInWindow();
-        b1.addActionListener((ActionListener) this);
-
+        this.universityParkScore = score;
+        //adds a back button to the game
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
 
-        //Adds a fact about the campus to the panel
-        funFact = new JLabel("Penn State’s Beaver Stadium is the 4th largest stadium in the world.");
-        add(funFact);
-        funFact.setBounds(new Rectangle(300, 615, 550, 30));
-        funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
-        funFact.setForeground(Color.blue);
+        pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 60);// 60 the maximun number of intervals that th progress bar will show
+        pbVertical.setStringPainted(true);
+        add(pbVertical);
+        pbVertical.setBounds(new Rectangle(1050, 0, 50, 600));
+
+        //adds keylistener
+        setFocusable(true);
+        addKeyListener(this);
+        requestFocusInWindow();
+
+        //--Timer--
+        delay = 1000; //1 second or 1000 milliseconds
+        buttonTimer = new Timer(delay, this);
+
+        //Put this here temporarily
+        //This game is broken so I wanted to see if the game would appear
+        gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+        if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+            mainMap.showWorldCampus();
+        }
 
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(univParkImage, 0, 0, this);
-        g.drawString("score = " + score/* + " " + buttonWidth + " " + buttonHeight */, 10, 520);
+        //paintComponent will be useful in this lab.
+        //read more about it in the paiting the screen lesson 
+        //and also the keyboard listener method
+        universityParkScore.setText("Score: " + gameScore.score);
         g.drawString("Press Spacebar to start the game", 10, 540);
         g.drawString("You have 60 seconds to keep clicking on the button to score", 10, 560);
+        g.drawImage(universityParkImage, 0, 0, this);
     }
 
     @Override
-    public void keyTyped(KeyEvent ke) {
-
+    public void keyTyped(KeyEvent e) {
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
-        // get the key code which is pressed
-        int key = ke.getKeyCode();
-
-        // check whether the key is a space bar
-        if (key == KeyEvent.VK_SPACE) {
-            // enable the button
-            b1.setEnabled(true);
-
-            // Add a listener object
-            ActionListener listener = new ActionListener() {
-                // set the counter to 60
-                int counter = 60;
-
-                // define the action performed method
-                public void actionPerformed(ActionEvent ae) {
-                    // loop to get the position of the button to be placed randomly
-                    do {
-                        buttonX = (int) (Math.random() * (progressBarX));
-                        buttonY = (int) (Math.random() * (scoreBarY));
-
-                        // condition to check, so that the button is placed within the limitation of progress bar and the result
-                    } while (!(buttonX >= 0 && buttonX + buttonWidth < progressBarX) || !(buttonY >= 0 && buttonY < scoreBarY - buttonHeight));
-
-//                    if(buttonWidth > 40) {
-//                        buttonWidth -= sizeDecrement;
-//                        buttonHeight -= sizeDecrement;
-//                    }
-                    b1.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
-
-                    // set the progress bar value
-                    pbVertical.setValue(counter);
-
-                    // set the value to display in the progress bar
-                    pbVertical.setString(String.valueOf(counter));
-
-                    // if the counter is less than 1, stop the timer and display the message that the game is over
-                    if (counter < 1) {
-                        tim.stop();
-                        JOptionPane.showMessageDialog(null, "Game Over..... Score :" + score);
-                        recentPlays.setText("Recent Plays: " + gameScore.listGames());
-                        gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-                        if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-                            mainMap.showWorldCampus();
-                        }
-                    } else {
-                        // decrement the counter
-                        counter--;
-                    }
-                }
-            };
-
-            // reinitialize the timer
-            tim = new Timer(delay / 10, listener);
-            tim.start();
-        }
-    }
-
-    public void createClickMeIcon(String inputTheme) {
-        theme = inputTheme;
-        if (theme == "Math") {
-            xmlFile = "UniversityParkGameMath.xml";
-        } else if (theme == "Sports") {
-            xmlFile = "UniversityParkGameSports.xml";
-        } else if (theme == "Java") {
-            xmlFile = "UniversityParkGameJava.xml";
-        }
-
-        if (theme != "") {
-            universityParkXML.openReaderXML(xmlFile);
-
-            String gameThemeName = (String) universityParkXML.ReadObject();
-            ImageIcon gameImage = new ImageIcon(gameThemeName);
-            b1 = new JButton(gameImage);
-            b1.setBounds(100, 100, buttonWidth, buttonHeight);
-            b1.setEnabled(false);
-            add(b1);
-        }
+    public void keyPressed(KeyEvent e) {
+        int k = e.getKeyCode();
 
     }
 
     @Override
-    public void keyReleased(KeyEvent ke) {
+    public void keyReleased(KeyEvent e) {
 
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         Object obj = event.getSource();
-        if (obj == b1) {
-            if (buttonHeight > 40) {
-                buttonWidth -= sizeDecrement * 2;
-                buttonHeight -= sizeDecrement;
+
+        if (obj == buttonTimer) {
+            if (j >= 0) {
+                pbVertical.setValue(j);
+                pbVertical.setValue(j);
+                pbVertical.setString("" + j);
+                j = j - 1;
+
+                remove(b1);
+                validate();
+                repaint();
+                delay = delay - 10;
+                buttonTimer.setDelay(delay);
+
+                add(b1);
+                b1.setBounds(createtBox(boxWidth, boxHeight));
             } else {
-                buttonWidth -= sizeDecrement / 2;
+                gameStart = false;
+                gameDone = true;
+                remove(b1);
+                validate();
+                repaint();
+                add(b1);
+                b1.setBounds(new Rectangle(500, 150, 300, 300));
+                b1.setText("GAME OVER --- SCORE " + universityParkNumScore);
+
             }
-            score++;
-            repaint();
+
         }
+
+        if (obj == b1 && gameStart == true) {
+
+            universityParkNumScore++;
+            buttonTimer.setDelay(delay);
+            remove(b1);
+            validate();
+            repaint();
+
+            add(b1);
+            boxWidth = boxWidth - (int) ((float) boxWidth / 10f);
+            boxHeight = boxHeight - (int) ((float) boxHeight / 10f);
+            b1.setBounds(createtBox(boxWidth, boxHeight));
+
+        }
+
+    }
+
+    //returns a random number in the range of the panel.
+    public int ranCordinate(int x, int y) {
+        return (int) ((Math.random() * (y - x)) + x);
+    }
+
+    //creates box with random cordinates.
+    public Rectangle createtBox(int width, int height) {
+
+        boxWidth = width;
+        boxHeight = height;
+
+        int x = ranCordinate(100, 950);
+        int y = ranCordinate(100, 500);
+
+        return (new Rectangle(x, y, boxWidth, boxHeight));
     }
 
 }
+
+//    public void createClickMeIcon(String inputTheme) {
+//        theme = inputTheme;
+//        if (theme == "Math") {
+//            xmlFile = "UniversityParkGameMath.xml";
+//        } else if (theme == "Sports") {
+//            xmlFile = "UniversityParkGameSports.xml";
+//        } else if (theme == "Java") {
+//            xmlFile = "UniversityParkGameJava.xml";
+//        }
+//
+//        if (theme != "") {
+//            universityParkXML.openReaderXML(xmlFile);
+//
+//            String gameThemeName = (String) universityParkXML.ReadObject();
+//            ImageIcon gameImage = new ImageIcon(gameThemeName);
+//            b1 = new JButton(gameImage);
+//            b1.setBounds(100, 100, buttonWidth, buttonHeight);
+//            b1.setEnabled(false);
+//            add(b1);
+//        }
+//
+//    }
+
