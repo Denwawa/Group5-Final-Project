@@ -158,14 +158,13 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         fayette.backToMap.addActionListener(this);
         worldCampus = new WorldCampusGame(gameScore, showScore);
         worldCampus.backToMap.addActionListener(this);
-        berks = new BerksGame(gameScore, showScore,recentPlays);
+        berks = new BerksGame(gameScore, showScore,recentPlays,mainMap);
         berks.backToMap.addActionListener(this);
         montAlto = new MontAltoGame(gameScore, showScore, recentPlays);
         montAlto.backToMap.addActionListener(this);
         gameOver = new GameOver();
         gameOver.backToMainMenu.addActionListener(this);
         
-
 
     }
 
@@ -367,7 +366,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
         }
         if (obj == optionsMenu.mathButton) {
-            optionsMenu.currentTheme = "Math";
+            optionsMenu.currentTheme = "Math";    
             optionsMenu.sportsText.setForeground(Color.orange);
             optionsMenu.javaText.setForeground(Color.orange);
             optionsMenu.mathText.setForeground(Color.blue);

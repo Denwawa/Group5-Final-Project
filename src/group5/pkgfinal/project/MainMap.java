@@ -92,13 +92,14 @@ public class MainMap extends JPanel implements ActionListener {
         add(univParkGame);
         univParkGame.setBounds(new Rectangle(575, 365, 30, 30));
 
+        
         //World Campus
         worldCampGame = new JButton(worldCampusImage);
         worldCampGame.setText("World Campus");
         worldCampGame.setHorizontalTextPosition(AbstractButton.CENTER);
         add(worldCampGame);
-        worldCampGame.setBounds(new Rectangle(600, 100, 100, 100));
-
+        worldCampGame.setBounds(new Rectangle(600, 100, 0, 0));
+   
         //Berks Campus
         berksGame = new JButton("Berks Campus");
         berksGame.setBackground(Color.pink);
@@ -132,6 +133,11 @@ public class MainMap extends JPanel implements ActionListener {
 
         setFocusable(true);
         requestFocusInWindow();
+    }
+    
+    //reveals world campus
+    public void showWorldCampus(){
+        worldCampGame.setBounds(new Rectangle(600, 100, 150, 150));
     }
 
     public void movePlayerRight() {

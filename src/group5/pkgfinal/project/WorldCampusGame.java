@@ -60,6 +60,7 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         berksXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
+        this.setBounds(new Rectangle(600, 100, 50, 50));
 
         //Adds a fact about the campus to the panel
         funFact = new JLabel("Fun Fact! This Campus was established in 1958");
@@ -119,6 +120,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         createQuestions("");
     }
+    
+    
 
     //Sets background image
     public void paintComponent(Graphics g) {

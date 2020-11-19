@@ -47,12 +47,13 @@ public class BerksGame extends JPanel implements ActionListener {
     XML_240 berksXML;
     String xmlFile, theme;
 
-    GameScore gameScore; 
+    GameScore gameScore;
     String game = "Berks Game";
-    
+
+    MainMap mainMap;
 
     //constructor
-    public BerksGame(GameScore gameScore,JLabel score,JLabel recentPlays) {
+    public BerksGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -60,6 +61,7 @@ public class BerksGame extends JPanel implements ActionListener {
         berksScore = score;
         berksPlayed = recentPlays;
         this.gameScore = gameScore;
+        this.mainMap = mainMap;
         berksXML = new XML_240();// creates the 240 class that reads and writes XML
         setBackground(Color.white);
         setLayout(null);
@@ -193,12 +195,16 @@ public class BerksGame extends JPanel implements ActionListener {
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer2 && scored == false) {
             if (multipleChoice2.isTrue == true) {
                 gameScore.increaseScore(1);
             }
+
             //updates the score based off the answer
             berksScore.setText("Score: " + gameScore.score);
             berksPlayed.setText("Score:" + game);
@@ -208,6 +214,9 @@ public class BerksGame extends JPanel implements ActionListener {
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer3 && scored == false) {
@@ -223,6 +232,9 @@ public class BerksGame extends JPanel implements ActionListener {
             remove(answer4);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {
+                mainMap.showWorldCampus();
+            }
 
         }
         if (obj == answer4 && scored == false) {
@@ -238,6 +250,9 @@ public class BerksGame extends JPanel implements ActionListener {
             remove(answer3);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {
+                mainMap.showWorldCampus();
+            }
 
         }
     }
