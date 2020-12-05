@@ -159,6 +159,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
         if (scored == false) {
             gameScore.addToList("Mont Alto Game");
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
         }
 
         if (obj == unscrambledWordInput) {

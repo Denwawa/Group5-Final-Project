@@ -136,7 +136,7 @@ public class MainMap extends JPanel implements ActionListener {
 
     //reveals world campus
     public void showWorldCampus() {
-        worldCampGame.setBounds(new Rectangle(600, 100, 150, 150));
+        worldCampGame.setBounds(new Rectangle(600, 100, 110, 110));
     }
 
     public void movePlayerRight() {

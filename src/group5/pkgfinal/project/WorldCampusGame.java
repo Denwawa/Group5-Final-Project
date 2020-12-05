@@ -17,8 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -26,9 +26,9 @@ import javax.swing.JTextField;
  */
 public class WorldCampusGame extends JPanel implements ActionListener {
 
-                //Main Penn State map Image
-        ImageIcon sourceBerksImage1 = new ImageIcon();
-        Image berksImage = sourceBerksImage1.getImage();
+    //Main Penn State map Image
+    ImageIcon sourceBerksImage1 = new ImageIcon("images/FindThePerson.jpg");
+    Image berksImage = sourceBerksImage1.getImage();
 
     //back to the menu button
     JButton backToMap;
@@ -77,21 +77,29 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         //Adds the components for the multiple choice game. THe question and answers are all blank.
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
-        displayQuestion = new JLabel("");
+        displayQuestion = new JLabel("",SwingConstants.CENTER);
+        displayQuestion.setFont(new Font("Century Gothic", Font.BOLD, 20));
         displayQuestion.setOpaque(true);
-        displayQuestion.setBackground(Color.gray);
-        displayQuestion.setForeground(Color.black);
+        displayQuestion.setForeground(Color.blue);
         displayQuestion.setBounds(new Rectangle(0, 0, 300, 60));
 
         displayAnswer = new JTextField();
-
 
         //Adds all the components to the map
         add(displayQuestion);
         displayQuestion.setBounds(new Rectangle(400, 50, 500, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
+        
+        //Creates the box to be found
+        findImage = new JButton();
+        findImage.addActionListener(this);
 
+        //puts the box in a random cordinate
+        int x = ranCordinate(100, 950);
+        int y = ranCordinate(100, 500);
+        findImage.setBounds(new Rectangle(x, y, 50, 50));
+        add(findImage);
 
         createQuestions("Math");
     }
@@ -115,27 +123,27 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         String q1 = "";
         String a1 = "";
-        
-
 
         if (theme != "") {
             worldCampusXML.openReaderXML(xmlFile);
             q1 = (String) worldCampusXML.ReadObject();//reads the lines in the XML file from the top to bottom.
             a1 = (String) worldCampusXML.ReadObject();
-            
+
         }
+
         
-    
         ImageIcon sourceImage1 = new ImageIcon(a1);
-        Image myImage1 = sourceImage1.getImage();
         
-        findImage = new JButton(sourceImage1);
-        findImage.addActionListener(this);
-        
-        add(findImage);
-        findImage.setBounds(new Rectangle(500, 150, 300, 50));
+        findImage.setIcon(sourceImage1);
+
         displayQuestion.setText(q1);
 
+    }
+    
+
+    //finds a random cordinate to place the image to be found
+    public int ranCordinate(int x, int y) {
+        return (int) ((Math.random() * (y - x)) + x);
     }
 
     @Override
@@ -147,17 +155,15 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             System.out.println(gameScore.recentlyPlayed);
         }
 
-//        if (obj == answer1 && scored == false) {
-//            gameScore.increaseScore(1);
-//            worldCampusScore.setText("Score: " + gameScore.score);
-//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-//            displayAnswer.setText("Found It !!");
-//            scored = true;
-//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-//
-//        }
+        if (obj == findImage && scored == false) {
+            gameScore.increaseScore(1);
+            worldCampusScore.setText("Score: " + gameScore.score);
+            recentPlays.setText("Recent Plays: " + gameScore.listGames());
+            displayAnswer.setText("Found It !!");
+            scored = true;
+            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            findImage.removeActionListener(this);//after the correct answer is put in, they cant change it
 
         }
     }
-
-
+}

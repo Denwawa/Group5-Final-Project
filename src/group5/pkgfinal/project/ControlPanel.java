@@ -191,7 +191,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(fayette);
             validate();
             repaint();
-        } else if (campus == "World") {
+        } else if (campus == "World" && worldCampus.scored == false) {
             remove(mainMap);
             add(worldCampus);
             validate();
