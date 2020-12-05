@@ -198,10 +198,8 @@ public class FayetteGame extends JPanel implements ActionListener {
             fayetteScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice1.isCorrect);
-            remove(answer2);
-            remove(answer3);
-            remove(answer4);
             scored = true;
+            mainMap.fayetteGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
@@ -216,10 +214,8 @@ public class FayetteGame extends JPanel implements ActionListener {
             fayetteScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice2.isCorrect);
-            remove(answer1);
-            remove(answer3);
-            remove(answer4);
             scored = true;
+            mainMap.fayetteGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
@@ -234,10 +230,8 @@ public class FayetteGame extends JPanel implements ActionListener {
             fayetteScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice3.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer4);
             scored = true;
+            mainMap.fayetteGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
@@ -252,10 +246,8 @@ public class FayetteGame extends JPanel implements ActionListener {
             fayetteScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer.setText(multipleChoice4.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer3);
             scored = true;
+            mainMap.fayetteGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();

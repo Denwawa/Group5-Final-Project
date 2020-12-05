@@ -88,7 +88,7 @@ public class MainMap extends JPanel implements ActionListener {
 
         //University Park
         univParkGame = new JButton("UniversityPark");
-        univParkGame.setBackground(Color.blue);
+        univParkGame.setBackground(Color.green);
         add(univParkGame);
         univParkGame.setBounds(new Rectangle(575, 365, 30, 30));
 
@@ -101,25 +101,25 @@ public class MainMap extends JPanel implements ActionListener {
 
         //Berks Campus
         berksGame = new JButton("Berks Campus");
-        berksGame.setBackground(Color.pink);
+        berksGame.setBackground(Color.green);
         add(berksGame);
         berksGame.setBounds(new Rectangle(935, 475, 30, 30));
 
         //Scranton Campus
         scrantonGame = new JButton("Scranton Campus");
-        scrantonGame.setBackground(Color.yellow);
+        scrantonGame.setBackground(Color.green);
         add(scrantonGame);
         scrantonGame.setBounds(new Rectangle(980, 215, 30, 30));
 
         //Fayette Campus
         fayetteGame = new JButton("Fayette Campus");
-        fayetteGame.setBackground(Color.red);
+        fayetteGame.setBackground(Color.green);
         add(fayetteGame);
         fayetteGame.setBounds(new Rectangle(217, 580, 30, 30));
 
         //Mont Alto Campus
         montAltoGame = new JButton("Mont Alto");
-        montAltoGame.setBackground(Color.orange);
+        montAltoGame.setBackground(Color.green);
         add(montAltoGame);
         montAltoGame.setBounds(new Rectangle(632, 605, 30, 30));
 

@@ -196,10 +196,8 @@ public class BerksGame extends JPanel implements ActionListener {
             }
             berksScore.setText("Score: " + gameScore.score);//increments score
             displayAnswer.setText(multipleChoice1.isCorrect);
-            remove(answer2);
-            remove(answer3);
-            remove(answer4);
             scored = true;
+            mainMap.berksGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
@@ -214,10 +212,8 @@ public class BerksGame extends JPanel implements ActionListener {
             //updates the score based off the answer
             berksScore.setText("Score: " + gameScore.score);
             displayAnswer.setText(multipleChoice2.isCorrect);
-            remove(answer1);
-            remove(answer3);
-            remove(answer4);
             scored = true;
+            mainMap.berksGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {
                 mainMap.showWorldCampus();
@@ -231,10 +227,8 @@ public class BerksGame extends JPanel implements ActionListener {
             }
             berksScore.setText("Score: " + gameScore.score);
             displayAnswer.setText(multipleChoice3.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer4);
             scored = true;
+            mainMap.berksGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {
                 mainMap.showWorldCampus();
@@ -249,10 +243,8 @@ public class BerksGame extends JPanel implements ActionListener {
             berksScore.setText("Score: " + gameScore.score);
 
             displayAnswer.setText(multipleChoice4.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer3);
             scored = true;
+            mainMap.berksGame.setBackground(Color.red);//sets the color to red on the main map
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {
                 mainMap.showWorldCampus();

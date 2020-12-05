@@ -180,13 +180,14 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(scranton);
             validate();
             repaint();
-        } else if (campus == "Berks") {
+        } else if (campus == "Berks" && berks.scored == false) {
             remove(mainMap);
             add(berks);
             validate();
             repaint();
+            
 
-        } else if (campus == "Fayette") {
+        } else if (campus == "Fayette" && fayette.scored == false) {
             remove(mainMap);
             add(fayette);
             validate();
