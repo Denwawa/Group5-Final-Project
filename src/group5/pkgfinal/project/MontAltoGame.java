@@ -45,7 +45,6 @@ public class MontAltoGame extends JPanel implements ActionListener {
     JTextField unscrambledWordInput;
     String guessedWord,
             matchedWord;
-    JButton checkGameAnswer;
 
     Boolean scored;
 
@@ -83,7 +82,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
         //Adds the components for the multiple choice game. THe question and answers are all blank.
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
-        displayQuestion = new JLabel("Unscramble the following word below. Type your answer and hit enter!");
+        displayQuestion = new JLabel();
         displayQuestion.setOpaque(true);
         displayQuestion.setBackground(Color.gray);
         displayQuestion.setForeground(Color.black);
@@ -103,7 +102,6 @@ public class MontAltoGame extends JPanel implements ActionListener {
         scrambledWord.setBounds(new Rectangle(0, 0, 300, 60));
 
         unscrambledWordInput = new JTextField("");
-        checkGameAnswer = new JButton("Click to Check Answer");
 
         //Adds all the components to the map
         add(displayQuestion);
@@ -113,15 +111,10 @@ public class MontAltoGame extends JPanel implements ActionListener {
         add(unscrambledWordInput);
         unscrambledWordInput.addActionListener(this);
         unscrambledWordInput.setBounds(new Rectangle(500, 250, 300, 50));
-        add(checkGameAnswer);
-        checkGameAnswer.addActionListener(this);
-        checkGameAnswer.setBounds(new Rectangle(500, 350, 300, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
-        
-        matchedWord = "help";
 
-        // createQuestions("Math");//sets default to Math
+         createQuestions("Math");//sets default to Math
     }
 
     //Sets background image
@@ -130,74 +123,54 @@ public class MontAltoGame extends JPanel implements ActionListener {
         g.drawImage(berksImage, 0, 0, this);
     }
 
-//    //Fills in the missing text for the questions and answers in the constructor.
-//    public void createQuestions(String inputTheme) {
-//        theme = inputTheme;
-//        if (theme == "Math") {
-//            xmlFile = "MontAltoGameMath.xml";
-//        } else if (theme == "Sports") {
-//            xmlFile = "MontAltoGameSports.xml";
-//        } else if (theme == "Java") {
-//            xmlFile = "MontAltoGameJava.xml";
-//        }
-//
-//        String q1 = "";
-//        String a1 = "";
-//        String a2 = "";
-//        String a3 = "";
-//        String a4 = "";
-//
-//        Boolean a1Boolean = false;
-//        Boolean a2Boolean = false;
-//        Boolean a3Boolean = false;
-//        Boolean a4Boolean = false;
-//
-//        if (theme != "") {
-//            montAltoXML.openReaderXML(xmlFile);
-//            q1 = (String) montAltoXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-//            a1Boolean = (Boolean) montAltoXML.ReadObject();
-//            a1 = (String) montAltoXML.ReadObject();
-//            a2Boolean = (Boolean) montAltoXML.ReadObject();
-//            a2 = (String) montAltoXML.ReadObject();
-//            a3Boolean = (Boolean) montAltoXML.ReadObject();
-//            a3 = (String) montAltoXML.ReadObject();
-//            a4Boolean = (Boolean) montAltoXML.ReadObject();
-//            a4 = (String) montAltoXML.ReadObject();
-//        }
-//        displayQuestion.setText(q1);
-//
-//        multipleChoice1.changeButtonText(a1);
-//        multipleChoice2.changeButtonText(a2);
-//        multipleChoice3.changeButtonText(a3);
-//        multipleChoice4.changeButtonText(a4);
-//
-//        multipleChoice1.changeIsCorrect(a1Boolean);
-//        multipleChoice2.changeIsCorrect(a2Boolean);
-//        multipleChoice3.changeIsCorrect(a3Boolean);
-//        multipleChoice4.changeIsCorrect(a4Boolean);
-//    }
-    
+    //Fills in the missing text for the questions and answers in the constructor.
+    public void createQuestions(String inputTheme) {
+        theme = inputTheme;
+        if (theme == "Math") {
+            xmlFile = "MontAltoGameMath.xml";
+        } else if (theme == "Sports") {
+            xmlFile = "MontAltoGameSports.xml";
+        } else if (theme == "Java") {
+            xmlFile = "MontAltoGameJava.xml";
+        }
+
+        String q1 = "";
+        String s1 = "";
+        String s2 = "";
+
+        if (theme != "") {
+            montAltoXML.openReaderXML(xmlFile);
+            q1 = (String) montAltoXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            s1 = (String) montAltoXML.ReadObject();
+            s2 = (String) montAltoXML.ReadObject();
+        }
+        displayQuestion.setText(q1);
+        scrambledWord.setText(s1);
+        matchedWord = s2;
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
-        
-        if (scored == false){
+
+        if (scored == false) {
             gameScore.addToList("Mont Alto Game");
         }
-        
-        if (obj == unscrambledWordInput){
+
+        if (obj == unscrambledWordInput) {
             guessedWord = unscrambledWordInput.getText();
-            if (guessedWord.equals(matchedWord)){
-            displayAnswer.setText("Correct!");
-            }
-            else
-            {
+            if (guessedWord.equals(matchedWord)) {
+                displayAnswer.setText("Correct!");
+                scored = true;
+                gameScore.increaseGameComplete();
+                berksScore.setText("Score: " + gameScore.score);
+            } else {
                 displayAnswer.setText("Incorrect! Guess Again!");
                 unscrambledWordInput.setText("");
             }
         }
-
 
     }
 

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
-<string> Named computer memory locations are called </string>
-<boolean>True</boolean>
+<string>Unscramble the following Java term below. Type your answer and hit enter!</string>
+<string>riavablse</string>
 <string>variables</string>
-<boolean>False</boolean>
-<string>compilers</string>
-<boolean>false</boolean>
-<string>addresses</string>
-<boolean>False</boolean>
-<string>appellations</string>
 </java>

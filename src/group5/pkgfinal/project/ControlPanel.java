@@ -362,7 +362,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Sports");
             fayette.createQuestions("Sports");
             scranton.createQuestions("Sports");
-            //    montAlto.createQuestions("Sports");
+            montAlto.createQuestions("Sports");
             universityPark.createClickMeIcon("Sports");
             worldCampus.createQuestions("Sports");
 
@@ -377,7 +377,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Math");
             fayette.createQuestions("Math");
             scranton.createQuestions("Math");
-            //    montAlto.createQuestions("Math");
+            montAlto.createQuestions("Math");
             universityPark.createClickMeIcon("Math");
             worldCampus.createQuestions("Math");
 
@@ -392,7 +392,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Java");
             fayette.createQuestions("Java");
             scranton.createQuestions("Java");
-            //   montAlto.createQuestions("Java");
+            montAlto.createQuestions("Java");
             worldCampus.createQuestions("Java");
             universityPark.createClickMeIcon("Java");
         }
