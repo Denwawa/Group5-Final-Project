@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
 <string>Find the Lion</string>
-<boolean>true</boolean>  
 <string>images/matching_game_1.jpg</string>
 </java>

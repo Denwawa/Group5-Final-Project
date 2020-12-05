@@ -21,8 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *
- * Word Unscrambler
+ *Mont alto game is a game where the user tries to guess the unscrambled word
+ * The word is based off of the theme.
  */
 public class MontAltoGame extends JPanel implements ActionListener {
 

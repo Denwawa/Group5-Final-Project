@@ -26,16 +26,16 @@ import javax.swing.JTextField;
  */
 public class WorldCampusGame extends JPanel implements ActionListener {
 
-    //Main Penn State map Image
-    ImageIcon sourceBerksImage1 = new ImageIcon("images/FindThePerson.jpg");
-    Image berksImage = sourceBerksImage1.getImage();
+                //Main Penn State map Image
+        ImageIcon sourceBerksImage1 = new ImageIcon();
+        Image berksImage = sourceBerksImage1.getImage();
 
     //back to the menu button
     JButton backToMap;
     JLabel displayQuestion;
     ButtonGroup group;
 
-    JRadioButton answer1;
+    JButton findImage;
     JTextField displayAnswer;
     JLabel funFact;
     JLabel worldCampusScore;
@@ -85,24 +85,12 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         displayAnswer = new JTextField();
 
-        multipleChoice1 = new RadioButtonMultipleChoice(false, "");
-
-        answer1 = multipleChoice1.button;
-
-
-        group = new ButtonGroup();
-        group.add(answer1);
-  
 
         //Adds all the components to the map
         add(displayQuestion);
         displayQuestion.setBounds(new Rectangle(400, 50, 500, 50));
-        add(answer1);
-        answer1.setBounds(new Rectangle(500, 150, 300, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
-
-        answer1.addActionListener(this);
 
 
         createQuestions("Math");
@@ -128,20 +116,26 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         String q1 = "";
         String a1 = "";
         
-        Boolean a1Boolean = false;
 
 
         if (theme != "") {
             worldCampusXML.openReaderXML(xmlFile);
             q1 = (String) worldCampusXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) worldCampusXML.ReadObject();
             a1 = (String) worldCampusXML.ReadObject();
             
         }
+        
+    
+        ImageIcon sourceImage1 = new ImageIcon(a1);
+        Image myImage1 = sourceImage1.getImage();
+        
+        findImage = new JButton(sourceImage1);
+        findImage.addActionListener(this);
+        
+        add(findImage);
+        findImage.setBounds(new Rectangle(500, 150, 300, 50));
         displayQuestion.setText(q1);
 
-        multipleChoice1.changeButtonText(a1);
-        multipleChoice1.changeIsCorrect(a1Boolean);
     }
 
     @Override
@@ -153,18 +147,15 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             System.out.println(gameScore.recentlyPlayed);
         }
 
-        if (obj == answer1 && scored == false) {
-            if (multipleChoice1.isTrue == true) {
-                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
-            }
-            worldCampusScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            System.out.println(multipleChoice1.isTrue);
-            displayAnswer.setText(multipleChoice1.isCorrect);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-
-        }
+//        if (obj == answer1 && scored == false) {
+//            gameScore.increaseScore(1);
+//            worldCampusScore.setText("Score: " + gameScore.score);
+//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
+//            displayAnswer.setText("Found It !!");
+//            scored = true;
+//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+//
+//        }
 
         }
     }
