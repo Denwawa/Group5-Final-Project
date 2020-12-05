@@ -17,8 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -84,21 +84,23 @@ public class MontAltoGame extends JPanel implements ActionListener {
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
         displayQuestion = new JLabel();
         displayQuestion.setOpaque(true);
-        displayQuestion.setBackground(Color.gray);
-        displayQuestion.setForeground(Color.black);
+        displayQuestion.setBackground(Color.blue);
+        displayQuestion.setForeground(Color.white);
+        displayQuestion.setFont(new Font("Arial",Font.PLAIN ,14));
         displayQuestion.setBounds(new Rectangle(0, 0, 300, 60));
 
-        displayAnswer = new JLabel();
+        displayAnswer = new JLabel("",SwingConstants.CENTER);
         displayAnswer.setOpaque(true);
         displayAnswer.setBackground(Color.white);
         displayAnswer.setForeground(Color.black);
         displayAnswer.setBounds(new Rectangle(0, 0, 300, 60));
 
         //displays the scrambled word based on the theme
-        scrambledWord = new JLabel("");
+        scrambledWord = new JLabel("",SwingConstants.CENTER);
         scrambledWord.setOpaque(true);
         scrambledWord.setBackground(Color.gray);
         scrambledWord.setForeground(Color.black);
+        scrambledWord.setFont(new Font("Arial",Font.BOLD ,16));
         scrambledWord.setBounds(new Rectangle(0, 0, 300, 60));
 
         unscrambledWordInput = new JTextField("");
@@ -110,11 +112,11 @@ public class MontAltoGame extends JPanel implements ActionListener {
         scrambledWord.setBounds(new Rectangle(500, 150, 300, 50));
         add(unscrambledWordInput);
         unscrambledWordInput.addActionListener(this);
-        unscrambledWordInput.setBounds(new Rectangle(500, 250, 300, 50));
+        unscrambledWordInput.setBounds(new Rectangle(500, 400, 300, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
 
-         createQuestions("Math");//sets default to Math
+        createQuestions("Math");//sets default to Math
     }
 
     //Sets background image
@@ -162,87 +164,26 @@ public class MontAltoGame extends JPanel implements ActionListener {
         if (obj == unscrambledWordInput) {
             guessedWord = unscrambledWordInput.getText();
             if (guessedWord.equals(matchedWord)) {
+                gameScore.increaseScore(1);
+                berksScore.setText("Score: " + gameScore.score);
                 displayAnswer.setText("Correct!");
+                displayAnswer.setForeground(Color.GREEN);
                 scored = true;
                 gameScore.increaseGameComplete();
-                berksScore.setText("Score: " + gameScore.score);
-            } else {
+                unscrambledWordInput.removeActionListener(this);//after the correct answer is put in, they cant change it
+                mainMap.montAltoGame.setBackground(Color.red);//sets the color to red on the main map
+                if (gameScore.gameComplete == 5) {
+                    mainMap.showWorldCampus();
+                }
+            //if the user enters nothing it promts them to enter something
+            }else if (guessedWord.equals("")){
+                displayAnswer.setText("Please input text before hitting enter!");
+            }else {
                 displayAnswer.setText("Incorrect! Guess Again!");
+                displayAnswer.setForeground(Color.RED);
                 unscrambledWordInput.setText("");
             }
         }
 
     }
-
-//        if (obj == answer1 && scored == false) {
-//            if (multipleChoice1.isTrue == true) {
-//                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
-//            }
-//            berksScore.setText("Score: " + gameScore.score);
-//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-//            displayAnswer.setText(multipleChoice1.isCorrect);
-//            remove(answer2);
-//            remove(answer3);
-//            remove(answer4);
-//            scored = true;
-//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-//            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-//                mainMap.showWorldCampus();
-//            }
-//
-//        }
-//        if (obj == answer2 && scored == false) {
-//            if (multipleChoice2.isTrue == true) {
-//                gameScore.increaseScore(1);
-//            }
-//            //updates the score based off the answer
-//            berksScore.setText("Score: " + gameScore.score);
-//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-//            displayAnswer.setText(multipleChoice2.isCorrect);
-//            remove(answer1);
-//            remove(answer3);
-//            remove(answer4);
-//            scored = true;
-//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-//            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-//                mainMap.showWorldCampus();
-//            }
-//
-//        }
-//        if (obj == answer3 && scored == false) {
-//            if (multipleChoice3.isTrue == true) {
-//                gameScore.increaseScore(1);
-//
-//            }
-//            berksScore.setText("Score: " + gameScore.score);
-//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-//            displayAnswer.setText(multipleChoice3.isCorrect);
-//            remove(answer1);
-//            remove(answer2);
-//            remove(answer4);
-//            scored = true;
-//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-//            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-//                mainMap.showWorldCampus();
-//            }
-//
-//        }
-//        if (obj == answer4 && scored == false) {
-//            if (multipleChoice4.isTrue == true) {
-//                gameScore.increaseScore(1);
-//
-//            }
-//            berksScore.setText("Score: " + gameScore.score);
-//            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-//            displayAnswer.setText(multipleChoice4.isCorrect);
-//            remove(answer1);
-//            remove(answer2);
-//            remove(answer3);
-//            scored = true;
-//            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-//            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-//                mainMap.showWorldCampus();
-//            }
-//
-//        }
 }
