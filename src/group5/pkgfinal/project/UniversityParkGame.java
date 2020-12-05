@@ -41,7 +41,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     int boxHeight = 75;
 
     JProgressBar pbVertical;
-    int j = 60;
+    int j = 30;//30 seconds
 
     JButton backToMap;
     XML_240 universityParkXML;
@@ -50,6 +50,8 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
 
     GameScore gameScore;
     MainMap mainMap;
+
+    Boolean scored;
 
     public UniversityParkGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
@@ -64,7 +66,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
 
-        pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 60);// 60 the maximun number of intervals that th progress bar will show
+        pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 30);// 60 the maximun number of intervals that th progress bar will show
         pbVertical.setStringPainted(true);
         add(pbVertical);
         pbVertical.setBounds(new Rectangle(1050, 0, 50, 600));
@@ -128,6 +130,13 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     @Override
     public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
+        
+            if (k == e.VK_SPACE && gameDone == true) {
+            gameStart = true;
+            buttonTimer.start();
+            gameDone = false;
+
+        }
 
     }
 
@@ -139,50 +148,6 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     @Override
     public void actionPerformed(ActionEvent event) {
         Object obj = event.getSource();
-
-        if (obj == buttonTimer) {
-            if (j >= 0) {
-                pbVertical.setValue(j);
-                pbVertical.setValue(j);
-                pbVertical.setString("" + j);
-                j = j - 1;
-
-                remove(b1);
-                validate();
-                repaint();
-                delay = delay - 10;
-                buttonTimer.setDelay(delay);
-
-                add(b1);
-                b1.setBounds(createtBox(boxWidth, boxHeight));
-            } else {
-                gameStart = false;
-                gameDone = true;
-                remove(b1);
-                validate();
-                repaint();
-                add(b1);
-                b1.setBounds(new Rectangle(500, 150, 300, 300));
-                b1.setText("GAME OVER --- SCORE " + universityParkNumScore);
-
-            }
-
-        }
-
-        if (obj == b1 && gameStart == true) {
-
-            universityParkNumScore++;
-            buttonTimer.setDelay(delay);
-            remove(b1);
-            validate();
-            repaint();
-
-            add(b1);
-            boxWidth = boxWidth - (int) ((float) boxWidth / 10f);
-            boxHeight = boxHeight - (int) ((float) boxHeight / 10f);
-            b1.setBounds(createtBox(boxWidth, boxHeight));
-
-        }
 
     }
 
@@ -201,6 +166,12 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         int y = ranCordinate(100, 500);
 
         return (new Rectangle(x, y, boxWidth, boxHeight));
+    }
+
+    public void placeBox() {
+        remove(b1);
+        validate();
+        repaint();
     }
 
 }

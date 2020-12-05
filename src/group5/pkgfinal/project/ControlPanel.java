@@ -185,7 +185,6 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             add(berks);
             validate();
             repaint();
-            
 
         } else if (campus == "Fayette" && fayette.scored == false) {
             remove(mainMap);
@@ -363,7 +362,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Sports");
             fayette.createQuestions("Sports");
             scranton.createQuestions("Sports");
-            montAlto.createQuestions("Sports");
+            //    montAlto.createQuestions("Sports");
             universityPark.createClickMeIcon("Sports");
             worldCampus.createQuestions("Sports");
 
@@ -378,7 +377,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Math");
             fayette.createQuestions("Math");
             scranton.createQuestions("Math");
-            montAlto.createQuestions("Math");
+            //    montAlto.createQuestions("Math");
             universityPark.createClickMeIcon("Math");
             worldCampus.createQuestions("Math");
 
@@ -393,7 +392,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             berks.createQuestions("Java");
             fayette.createQuestions("Java");
             scranton.createQuestions("Java");
-            montAlto.createQuestions("Java");
+            //   montAlto.createQuestions("Java");
             worldCampus.createQuestions("Java");
             universityPark.createClickMeIcon("Java");
         }
@@ -403,7 +402,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             timeCount.setText("Time: " + i);
         }
 
-        //Source code to lcick me game
+        //Source code to click me game
+        //Need to place here so action listeners work properly
         if (obj == universityPark.buttonTimer) {
             if (universityPark.j >= 0) {
                 universityPark.pbVertical.setValue(universityPark.j);
@@ -428,6 +428,10 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
                 add(universityPark.b1);
                 universityPark.b1.setBounds(new Rectangle(500, 150, 300, 300));
                 universityPark.b1.setText("GAME OVER --- SCORE " + universityPark.universityParkScore);
+                universityPark.scored = true;//tells the main game that this game's score has been accoutned for
+                mainMap.universityPark.setBackground(Color.red);//sets the color to red on the main map
+                gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+                gameScore.increaseScore(universityPark.universityParkNumScore);
 
             }
 
@@ -436,7 +440,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         if (obj == universityPark.b1 && universityPark.gameStart == true) {
 
             universityPark.universityParkNumScore++;
-            universityPark.buttonTimer.setDelay(delay);
+            universityPark.buttonTimer.setDelay(universityPark.delay);
             remove(universityPark.b1);
             validate();
             repaint();
@@ -478,7 +482,9 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             mainMap.movePlayerDown();
             pickGame();
         }
-        if (key == event.VK_SPACE && universityPark.gameDone == true) {
+
+        if (key == KeyEvent.VK_SPACE && universityPark.gameDone == true) {
+            remove(universityPark.backToMap);
             universityPark.gameStart = true;
             universityPark.buttonTimer.start();
             universityPark.gameDone = false;
