@@ -26,7 +26,7 @@ import javax.swing.Timer;
  */
 public class UniversityParkGame extends JPanel implements KeyListener, ActionListener {
 
-    ImageIcon sourceUniversityParkImage1 = new ImageIcon("images/UniversityPark.jpg");
+    ImageIcon sourceUniversityParkImage1 = new ImageIcon("images/University_Park.jpg");
     Image universityParkImage = sourceUniversityParkImage1.getImage();
 
     JButton b1;
@@ -70,17 +70,19 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
         
-        //Adds a fact about the campus to the panel
+        //Adds a fact about the campus to the panel and instructions
         funFact = new JLabel("Fun Fact! Beaver Stadium is the 4th largest stadium in the world!");
         add(funFact);
         funFact.setBounds(new Rectangle(10, 20, 500, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
         funFact.setForeground(Color.blue);
+        //Adds a fact about the campus to the panel and instructions
+
 
         pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 30);// 60 the maximun number of intervals that th progress bar will show
         pbVertical.setStringPainted(true);
         add(pbVertical);
-        pbVertical.setBounds(new Rectangle(1050, 0, 50, 600));
+        pbVertical.setBounds(new Rectangle(1100, 0, 50, 600));
 
         //adds keylistener
         setFocusable(true);
@@ -98,10 +100,13 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         //paintComponent will be useful in this lab.
         //read more about it in the paiting the screen lesson 
         //and also the keyboard listener method
-        universityParkScore.setText("Score: " + gameScore.score);
-        g.drawString("Press Spacebar to start the game", 10, 540);
-        g.drawString("You have 60 seconds to keep clicking on the button to score", 10, 560);
         g.drawImage(universityParkImage, 0, 0, this);
+        universityParkScore.setText("Score: " + gameScore.score);
+        g.setColor(Color.RED);
+        g.drawString("Press Spacebar to start the game", 10, 60);
+        g.setColor(Color.RED);
+        g.drawString("You have 30 seconds to keep clicking on the button to score", 10, 75);
+        
     }
 
     public void createClickMeIcon(String inputTheme) {
