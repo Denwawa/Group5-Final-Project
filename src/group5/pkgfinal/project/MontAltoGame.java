@@ -42,6 +42,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
 
     //game componenents
     JLabel scrambledWord;
+    JLabel hint;
     JTextField unscrambledWordInput;
     String guessedWord,
             matchedWord;
@@ -102,6 +103,13 @@ public class MontAltoGame extends JPanel implements ActionListener {
         scrambledWord.setForeground(Color.black);
         scrambledWord.setFont(new Font("Arial",Font.BOLD ,16));
         scrambledWord.setBounds(new Rectangle(0, 0, 300, 60));
+        
+        hint = new JLabel("",SwingConstants.CENTER);
+        hint.setOpaque(true);
+        hint.setBackground(Color.gray);
+        hint.setForeground(Color.black);
+        hint.setFont(new Font("Arial",Font.BOLD ,16));
+        hint.setBounds(new Rectangle(0, 0, 300, 60));
 
         unscrambledWordInput = new JTextField("");
 
@@ -115,6 +123,8 @@ public class MontAltoGame extends JPanel implements ActionListener {
         unscrambledWordInput.setBounds(new Rectangle(500, 400, 300, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
+        add(hint);
+        hint.setBounds(new Rectangle(400, 300, 500, 50));
 
         createQuestions("Math");//sets default to Math
     }
@@ -139,16 +149,19 @@ public class MontAltoGame extends JPanel implements ActionListener {
         String q1 = "";
         String s1 = "";
         String s2 = "";
+        String h1 = "";
 
         if (theme != "") {
             montAltoXML.openReaderXML(xmlFile);
             q1 = (String) montAltoXML.ReadObject();//reads the lines in the XML file from the top to bottom.
             s1 = (String) montAltoXML.ReadObject();
             s2 = (String) montAltoXML.ReadObject();
+            h1 = (String) montAltoXML.ReadObject();
         }
         displayQuestion.setText(q1);
         scrambledWord.setText(s1);
         matchedWord = s2;
+        hint.setText(h1);
 
     }
 

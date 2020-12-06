@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
 <string>Unscramble the following Java term below. Type your answer and hit enter!</string>
-<string>riavablse</string>
-<string>variables</string>
+<string>riavable</string>
+<string>variable</string>
+<string>Hint: Typically used to store information.</string>
 </java>
