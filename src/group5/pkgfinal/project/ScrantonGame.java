@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * Berks Game Multiple Choice Game
+ * Scranton True or false game
  */
 public class ScrantonGame extends JPanel implements ActionListener {
 
@@ -32,16 +32,26 @@ public class ScrantonGame extends JPanel implements ActionListener {
 
     //back to the menu button
     JButton backToMap;
-    JLabel displayQuestion;
-    ButtonGroup group;
+    JLabel displayQuestion1,
+            displayQuestion2,
+            displayQuestion3;
+    ButtonGroup group1, group2, group3;
 
-    JRadioButton answer1, answer2, answer3, answer4;
-    JTextField displayAnswer;
+    JRadioButton trueQuestion1, falseQuestion1,
+            trueQuestion2, falseQuestion2,
+            trueQuestion3, falseQuestion3;
+
+    JTextField displayAnswer1,
+            displayAnswer2,
+            displayAnswer3;
+
     JLabel funFact;
     JLabel scrantonScore;
     JLabel recentPlays;
 
-    RadioButtonMultipleChoice multipleChoice1, multipleChoice2, multipleChoice3, multipleChoice4;
+    RadioButtonMultipleChoice trueChoice1, falseChoice1,
+            trueChoice2, falseChoice2,
+            trueChoice3, falseChoice3;
 
     Boolean scored;
 
@@ -52,7 +62,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
     MainMap mainMap;
 
     //constructor
-    public ScrantonGame(GameScore gameScore, JLabel score,JLabel recentPlays, MainMap mainMap) {
+    public ScrantonGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
@@ -78,48 +88,80 @@ public class ScrantonGame extends JPanel implements ActionListener {
 
         //Adds the components for the multiple choice game. THe question and answers are all blank.
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
-        displayQuestion = new JLabel("");
-        displayQuestion.setOpaque(true);
-        displayQuestion.setBackground(Color.gray);
-        displayQuestion.setForeground(Color.black);
-        displayQuestion.setBounds(new Rectangle(0, 0, 300, 60));
+        displayQuestion1 = new JLabel("");
+        displayQuestion1.setOpaque(true);
+        displayQuestion1.setBackground(Color.gray);
+        displayQuestion1.setForeground(Color.black);
+        displayQuestion1.setBounds(new Rectangle(0, 0, 300, 60));
 
-        displayAnswer = new JTextField();
+        displayQuestion2 = new JLabel("");
+        displayQuestion2.setOpaque(true);
+        displayQuestion2.setBackground(Color.gray);
+        displayQuestion2.setForeground(Color.black);
+        displayQuestion2.setBounds(new Rectangle(0, 0, 300, 60));
 
-        multipleChoice1 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice2 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice3 = new RadioButtonMultipleChoice(false, "");
-        multipleChoice4 = new RadioButtonMultipleChoice(false, "");
+        displayQuestion3 = new JLabel("");
+        displayQuestion3.setOpaque(true);
+        displayQuestion3.setBackground(Color.gray);
+        displayQuestion3.setForeground(Color.black);
+        displayQuestion3.setBounds(new Rectangle(0, 0, 300, 60));
 
-        answer1 = multipleChoice1.button;
-        answer2 = multipleChoice2.button;
-        answer3 = multipleChoice3.button;
-        answer4 = multipleChoice4.button;
+        displayAnswer1 = new JTextField();
+        displayAnswer2 = new JTextField();
+        displayAnswer3 = new JTextField();
 
-        group = new ButtonGroup();
-        group.add(answer1);
-        group.add(answer2);
-        group.add(answer3);
-        group.add(answer4);
+        trueChoice1 = new RadioButtonMultipleChoice(false, "");
+        falseChoice1 = new RadioButtonMultipleChoice(false, "");
+        trueChoice2 = new RadioButtonMultipleChoice(false, "");
+        falseChoice2 = new RadioButtonMultipleChoice(false, "");
+        trueChoice3 = new RadioButtonMultipleChoice(false, "");
+        falseChoice3 = new RadioButtonMultipleChoice(false, "");
+
+        trueQuestion1 = trueChoice1.button;
+        falseQuestion1 = falseChoice1.button;
+        trueQuestion2 = trueChoice2.button;
+        falseQuestion2 = falseChoice2.button;
+        trueQuestion3 = trueChoice3.button;
+        falseQuestion3 = falseChoice3.button;
+
+        group1 = new ButtonGroup();//first group of t/f questions
+        group1.add(trueQuestion1);
+        group1.add(falseQuestion1);
+        group2 = new ButtonGroup();//2nd group of t/f questions
+        group2.add(trueQuestion2);
+        group2.add(falseQuestion2);
+        group3 = new ButtonGroup();//3rd group of t/f questions
+        group3.add(trueQuestion3);
+        group3.add(falseQuestion3);
 
         //Adds all the components to the map
-        add(displayQuestion);
-        displayQuestion.setBounds(new Rectangle(400, 50, 500, 50));
-        add(answer1);
-        answer1.setBounds(new Rectangle(500, 150, 300, 50));
-        add(answer2);
-        answer2.setBounds(new Rectangle(500, 250, 300, 50));
-        add(answer3);
-        answer3.setBounds(new Rectangle(500, 350, 300, 50));
-        add(answer4);
-        answer4.setBounds(new Rectangle(500, 450, 300, 50));
-        add(displayAnswer);
-        displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
+        add(displayQuestion1);
+        displayQuestion1.setBounds(new Rectangle(600, 150, 500, 50));
+        add(trueQuestion1);
+        trueQuestion1.setBounds(new Rectangle(50, 150, 200, 50));
+        add(falseQuestion1);
+        falseQuestion1.setBounds(new Rectangle(100, 150, 200, 50));
 
-        answer1.addActionListener(this);
-        answer2.addActionListener(this);
-        answer3.addActionListener(this);
-        answer4.addActionListener(this);
+        add(displayQuestion2);
+        displayQuestion2.setBounds(new Rectangle(600, 250, 500, 50));
+        add(trueQuestion2);
+        trueQuestion2.setBounds(new Rectangle(50, 250, 200, 50));
+        add(falseQuestion2);
+        falseQuestion2.setBounds(new Rectangle(100, 250, 200, 50));
+
+        add(displayQuestion3);
+        displayQuestion3.setBounds(new Rectangle(600, 350, 500, 50));
+        add(trueQuestion3);
+        trueQuestion3.setBounds(new Rectangle(50, 350, 200, 50));
+        add(falseQuestion3);
+        falseQuestion3.setBounds(new Rectangle(100, 350, 200, 50));
+
+        trueQuestion1.addActionListener(this);
+        trueQuestion2.addActionListener(this);
+        trueQuestion3.addActionListener(this);
+        falseQuestion1.addActionListener(this);
+        falseQuestion2.addActionListener(this);
+        falseQuestion3.addActionListener(this);
 
         createQuestions("Math");//sets default to Math
     }
@@ -142,41 +184,60 @@ public class ScrantonGame extends JPanel implements ActionListener {
         }
 
         String q1 = "";
-        String a1 = "";
-        String a2 = "";
-        String a3 = "";
-        String a4 = "";
+        String t1 = "";
+        String f1 = "";
 
-        Boolean a1Boolean = false;
-        Boolean a2Boolean = false;
-        Boolean a3Boolean = false;
-        Boolean a4Boolean = false;
+        String q2 = "";
+        String t2 = "";
+        String f2 = "";
+
+        String q3 = "";
+        String t3 = "";
+        String f3 = "";
+
+        Boolean t1Boolean = false;
+        Boolean f1Boolean = false;
+        Boolean t2Boolean = false;
+        Boolean f2Boolean = false;
+        Boolean t3Boolean = false;
+        Boolean f3Boolean = false;
 
         if (theme != "") {
             scrantonXML.openReaderXML(xmlFile);
             q1 = (String) scrantonXML.ReadObject();//reads the lines in the XML file from the top to bottom.
-            a1Boolean = (Boolean) scrantonXML.ReadObject();
-            a1 = (String) scrantonXML.ReadObject();
-            a2Boolean = (Boolean) scrantonXML.ReadObject();
-            a2 = (String) scrantonXML.ReadObject();
-            a3Boolean = (Boolean) scrantonXML.ReadObject();
-            a3 = (String) scrantonXML.ReadObject();
-            a4Boolean = (Boolean) scrantonXML.ReadObject();
-            a4 = (String) scrantonXML.ReadObject();
+            t1Boolean = (Boolean) scrantonXML.ReadObject();
+            t1 = (String) scrantonXML.ReadObject();
+            f1Boolean = (Boolean) scrantonXML.ReadObject();
+            f1 = (String) scrantonXML.ReadObject();
+            q2 = (String) scrantonXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            t2Boolean = (Boolean) scrantonXML.ReadObject();
+            t2 = (String) scrantonXML.ReadObject();
+            f2Boolean = (Boolean) scrantonXML.ReadObject();
+            f2 = (String) scrantonXML.ReadObject();
+            q3 = (String) scrantonXML.ReadObject();//reads the lines in the XML file from the top to bottom.
+            t3Boolean = (Boolean) scrantonXML.ReadObject();
+            t3 = (String) scrantonXML.ReadObject();
+            f3Boolean = (Boolean) scrantonXML.ReadObject();
+            f3 = (String) scrantonXML.ReadObject();
 
         }
-        System.out.println(a1);
-        displayQuestion.setText(q1);
+        displayQuestion1.setText(q1);
+        trueChoice1.changeButtonText(t1);
+        falseChoice1.changeButtonText(f1);
+        displayQuestion2.setText(q2);
+        trueChoice2.changeButtonText(t2);
+        falseChoice2.changeButtonText(f2);
+        displayQuestion3.setText(q3);
+        trueChoice3.changeButtonText(t3);
+        falseChoice3.changeButtonText(f3);
 
-        multipleChoice1.changeButtonText(a1);
-        multipleChoice2.changeButtonText(a2);
-        multipleChoice3.changeButtonText(a3);
-        multipleChoice4.changeButtonText(a4);
+        trueChoice1.changeIsCorrect(t1Boolean);
+        falseChoice1.changeIsCorrect(f1Boolean);
+        trueChoice2.changeIsCorrect(t2Boolean);
+        falseChoice2.changeIsCorrect(f2Boolean);
+        trueChoice3.changeIsCorrect(t3Boolean);
+        falseChoice3.changeIsCorrect(f3Boolean);
 
-        multipleChoice1.changeIsCorrect(a1Boolean);
-        multipleChoice2.changeIsCorrect(a2Boolean);
-        multipleChoice3.changeIsCorrect(a3Boolean);
-        multipleChoice4.changeIsCorrect(a4Boolean);
     }
 
     @Override
@@ -188,16 +249,46 @@ public class ScrantonGame extends JPanel implements ActionListener {
             System.out.println(gameScore.recentlyPlayed);
         }
 
-        if (obj == answer1 && scored == false) {
-            if (multipleChoice1.isTrue == true) {
+        if (obj == trueQuestion1 && scored == false) {
+            if (trueChoice1.isTrue == true) {
+                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
+            }
+            scrantonScore.setText("Score: " + gameScore.score);
+            displayAnswer1.setText(trueChoice1.isCorrect);
+        }
+        if (obj == falseQuestion1 && scored == false) {
+            if (falseChoice1.isTrue == true) {
+                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
+            }
+            scrantonScore.setText("Score: " + gameScore.score);
+            displayAnswer1.setText(falseChoice1.isCorrect);
+        }
+
+        if (obj == trueQuestion2 && scored == false) {
+            if (trueChoice2.isTrue == true) {
+                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
+            }
+            scrantonScore.setText("Score: " + gameScore.score);
+            displayAnswer2.setText(trueChoice2.isCorrect);
+
+
+        }
+        if (obj == falseQuestion2 && scored == false) {
+            if (falseChoice2.isTrue == true) {
+                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
+            }
+            scrantonScore.setText("Score: " + gameScore.score);
+            displayAnswer1.setText(falseChoice2.isCorrect);
+
+        }
+
+        if (obj == trueQuestion3 && scored == false) {
+            if (trueChoice3.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             scrantonScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice1.isCorrect);
-            remove(answer2);
-            remove(answer3);
-            remove(answer4);
+            displayAnswer3.setText(trueChoice3.isCorrect);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
@@ -205,59 +296,20 @@ public class ScrantonGame extends JPanel implements ActionListener {
             }
 
         }
-        if (obj == answer2 && scored == false) {
-            if (multipleChoice2.isTrue == true) {
-                gameScore.increaseScore(1);
-            }
-            //updates the score based off the answer
-            scrantonScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice2.isCorrect);
-            remove(answer1);
-            remove(answer3);
-            remove(answer4);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-                mainMap.showWorldCampus();
-            }
-
-        }
-        if (obj == answer3 && scored == false) {
-            if (multipleChoice3.isTrue == true) {
-                gameScore.increaseScore(1);
-
+        if (obj == falseQuestion3 && scored == false) {
+            if (falseChoice3.isTrue == true) {
+                gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             scrantonScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice3.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer4);
+            displayAnswer3.setText(falseChoice3.isCorrect);
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
             }
-
         }
-        if (obj == answer4 && scored == false) {
-            if (multipleChoice4.isTrue == true) {
-                gameScore.increaseScore(1);
 
-            }
-            scrantonScore.setText("Score: " + gameScore.score);
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
-            displayAnswer.setText(multipleChoice4.isCorrect);
-            remove(answer1);
-            remove(answer2);
-            remove(answer3);
-            scored = true;
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-            if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-                mainMap.showWorldCampus();
-            }
-
-        }
     }
 }
+ 

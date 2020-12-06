@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
-<string>How many National Championships does Penn State Football have?</string>
+<string>29 + 38 = 57?</string>
 <boolean>false</boolean>
-<string>2</string>
+<string>true</string>
 <boolean>true</boolean>
-<string>7</string>
+<string>false</string>
+<string>Pi is a terminating number </string>
 <boolean>false</boolean>
-<string>1</string>
+<string>true</string>
+<boolean>false</boolean>
+<string>false</string>
+<string>-2 is an integer</string>
 <boolean>true</boolean>
-<string>6</string>
+<string>true</string>
+<boolean>false</boolean>
+<string>false</string>
 </java>
