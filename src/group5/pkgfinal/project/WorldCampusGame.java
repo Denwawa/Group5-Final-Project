@@ -69,7 +69,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         add(funFact);
         funFact.setBounds(new Rectangle(10, 10, 400, 30));
         funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
-        funFact.setForeground(Color.white);
+        funFact.setForeground(Color.blue);
+        funFact.setOpaque(true);
         //adds a back button to the game
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
