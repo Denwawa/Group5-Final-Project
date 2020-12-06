@@ -43,11 +43,11 @@ public class GameOver extends JPanel {
         
         score = new JButton("Score");
         add(score);
-        score.setBounds(new Rectangle(100, 100, 100, 30));
+        score.setBounds(new Rectangle(600, 100, 100, 30));
         
         time = new JButton("time");
         add(time);
-        time.setBounds(new Rectangle(100, 200, 100, 30));
+        time.setBounds(new Rectangle(600, 200, 100, 30));
         
         recentlyPlayed = new JButton("rp");
         add(recentlyPlayed);
@@ -57,6 +57,9 @@ public class GameOver extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(gameOver, 0, 0, this);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 32));
+        g.setColor(Color.WHITE);
+        g.drawString("You Won !!",570,400);
     }
     
     public void addScoreInfo(String inputScore,String inputTime,String inputRecentlyPlayed) {

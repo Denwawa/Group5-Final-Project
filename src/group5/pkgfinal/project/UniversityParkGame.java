@@ -186,8 +186,8 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
                 validate();
                 repaint();
                 add(b1);
-                b1.setBounds(new Rectangle(500, 150, 300, 300));
-                b1.setText("GAME OVER --- SCORE " + universityParkScore);
+                b1.setBounds(new Rectangle(400, 150, 500, 500));
+                b1.setText("SCORE " + gameScore.score);
                 scored = true;//tells the main game that this game's score has been accoutned for
                 mainMap.univParkGame.setBackground(Color.red);//sets the color to red on the main map
                 gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
