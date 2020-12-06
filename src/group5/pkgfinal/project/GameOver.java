@@ -27,8 +27,9 @@ public class GameOver extends JPanel {
 
     //back to the menu button
     JButton backToMainMenu;
-    
-
+    JButton score,
+            time,
+            recentlyPlayed;
 
     //constructor
     public GameOver() {
@@ -40,15 +41,28 @@ public class GameOver extends JPanel {
         add(backToMainMenu);
         backToMainMenu.setBounds(new Rectangle(500, 10, 300, 30));
         
-
+        score = new JButton("Score");
+        add(score);
+        score.setBounds(new Rectangle(100, 100, 100, 30));
+        
+        time = new JButton("time");
+        add(time);
+        time.setBounds(new Rectangle(100, 200, 100, 30));
+        
+        recentlyPlayed = new JButton("rp");
+        add(recentlyPlayed);
+        recentlyPlayed.setBounds(new Rectangle(100, 300, 1000, 30));
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(gameOver, 0, 0, this);
-        g.setFont(new Font("Arial", Font.BOLD, 26));
-        g.setColor(Color.WHITE);
-        g.drawString("Game Over", 580, 80);
+    }
+    
+    public void addScoreInfo(String inputScore,String inputTime,String inputRecentlyPlayed) {
+        score.setText(inputScore);
+        time.setText(inputTime);
+        recentlyPlayed.setText(inputRecentlyPlayed);
     }
 
 }

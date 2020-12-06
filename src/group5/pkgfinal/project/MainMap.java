@@ -66,6 +66,7 @@ public class MainMap extends JPanel implements ActionListener {
         //sets a nul layout to add the buttons 
         super();
         InitialSetUpForMainMap();
+        CreateGamesThatWillBeSwapped();
 
     }
 
@@ -126,7 +127,8 @@ public class MainMap extends JPanel implements ActionListener {
         gameOverGame = new JButton("Game Over");
         gameOverGame.setBackground(Color.gray);
         add(gameOverGame);
-        gameOverGame.setBounds(new Rectangle(1050, 50, 110, 110));
+        gameOverGame.setBounds(new Rectangle(1050, 50, 100, 100));
+        gameOverGame.addActionListener(this);
 
         setFocusable(true);
         requestFocusInWindow();
@@ -136,7 +138,6 @@ public class MainMap extends JPanel implements ActionListener {
     public void showWorldCampus() {
         worldCampGame.setBounds(new Rectangle(600, 100, 110, 110));
     }
-    
 
     public void movePlayerRight() {
         if (horizontal < 1100) {
@@ -254,6 +255,11 @@ public class MainMap extends JPanel implements ActionListener {
         player = new JButton(sourceStudentImage);
         add(player);
         player.setBounds(new Rectangle(horizontal, vertical, 70, 150));
+    }
+
+    //Put your Game Class here so they can be used to switch between panels
+    public void CreateGamesThatWillBeSwapped() {
+
     }
 
     //Draws the penn state map
