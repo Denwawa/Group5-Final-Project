@@ -27,10 +27,10 @@ public class Instructions extends JPanel {
 
     //back to the menu button
     JButton backButton;
-    
+
     // Instructions Lines
     JTextField textField;
-    
+
     XML_240 berksXML;
     String xmlFile;
 
@@ -43,9 +43,9 @@ public class Instructions extends JPanel {
         backButton = new JButton("click here to go back to the Menu Screen");
         add(backButton);
         backButton.setBounds(new Rectangle(500, 10, 300, 30));
-        
+
         berksXML = new XML_240();// creates the 240 class that reads and writes XML
-        
+
         xmlFile = "Instructions.xml";
 
     }
@@ -60,8 +60,7 @@ public class Instructions extends JPanel {
         g.drawString(q, 500, 270);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 22));
         g.setColor(Color.RED);
-        
-        
+
         String q1 = "";
         String q2 = "";
         String q3 = "";
@@ -70,17 +69,16 @@ public class Instructions extends JPanel {
         q2 = (String) berksXML.ReadObject();
         q3 = (String) berksXML.ReadObject();
         q4 = (String) berksXML.ReadObject();
-        
+
         g.drawString(q1, 310, 310);
         g.drawString(q2, 310, 360);
         g.drawString(q3, 310, 410);
         g.drawString(q4, 310, 460);
-        
+
 //        g.drawString("1. Start by making your choices for character and theme", 310, 140);
 //        g.drawString("2. Use the arror key to move around the map", 310, 170);
 //        g.drawString("3. ...", 310, 200);
 //        g.drawString("4. ...", 310, 230);
-        
     }
 
 }

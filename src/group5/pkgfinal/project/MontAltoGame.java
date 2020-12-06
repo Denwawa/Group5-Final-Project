@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *Mont alto game is a game where the user tries to guess the unscrambled word
+ * Mont alto game is a game where the user tries to guess the unscrambled word
  * The word is based off of the theme.
  */
 public class MontAltoGame extends JPanel implements ActionListener {
@@ -87,28 +87,28 @@ public class MontAltoGame extends JPanel implements ActionListener {
         displayQuestion.setOpaque(true);
         displayQuestion.setBackground(Color.blue);
         displayQuestion.setForeground(Color.white);
-        displayQuestion.setFont(new Font("Arial",Font.PLAIN ,14));
+        displayQuestion.setFont(new Font("Arial", Font.PLAIN, 14));
         displayQuestion.setBounds(new Rectangle(0, 0, 300, 60));
 
-        displayAnswer = new JLabel("",SwingConstants.CENTER);
+        displayAnswer = new JLabel("", SwingConstants.CENTER);
         displayAnswer.setOpaque(true);
         displayAnswer.setBackground(Color.white);
         displayAnswer.setForeground(Color.black);
         displayAnswer.setBounds(new Rectangle(0, 0, 300, 60));
 
         //displays the scrambled word based on the theme
-        scrambledWord = new JLabel("",SwingConstants.CENTER);
+        scrambledWord = new JLabel("", SwingConstants.CENTER);
         scrambledWord.setOpaque(true);
         scrambledWord.setBackground(Color.gray);
         scrambledWord.setForeground(Color.black);
-        scrambledWord.setFont(new Font("Arial",Font.BOLD ,16));
+        scrambledWord.setFont(new Font("Arial", Font.BOLD, 16));
         scrambledWord.setBounds(new Rectangle(0, 0, 300, 60));
-        
-        hint = new JLabel("",SwingConstants.CENTER);
+
+        hint = new JLabel("", SwingConstants.CENTER);
         hint.setOpaque(true);
         hint.setBackground(Color.gray);
         hint.setForeground(Color.black);
-        hint.setFont(new Font("Arial",Font.BOLD ,16));
+        hint.setFont(new Font("Arial", Font.BOLD, 16));
         hint.setBounds(new Rectangle(0, 0, 300, 60));
 
         unscrambledWordInput = new JTextField("");
@@ -178,7 +178,7 @@ public class MontAltoGame extends JPanel implements ActionListener {
             guessedWord = unscrambledWordInput.getText();
             if (guessedWord.equals(matchedWord)) {
                 gameScore.addToList("Mont Alto Game");
-            recentPlays.setText("Recent Plays: " + gameScore.listGames());
+                recentPlays.setText("Recent Plays: " + gameScore.listGames());
                 gameScore.increaseScore(1);
                 berksScore.setText("Score: " + gameScore.score);
                 displayAnswer.setText("Correct!");
@@ -190,10 +190,10 @@ public class MontAltoGame extends JPanel implements ActionListener {
                 if (gameScore.gameComplete == 5) {
                     mainMap.showWorldCampus();
                 }
-            //if the user enters nothing it promts them to enter something
-            }else if (guessedWord.equals("")){
+                //if the user enters nothing it promts them to enter something
+            } else if (guessedWord.equals("")) {
                 displayAnswer.setText("Please input text before hitting enter!");
-            }else {
+            } else {
                 displayAnswer.setText("Incorrect! Guess Again!");
                 displayAnswer.setForeground(Color.RED);
                 unscrambledWordInput.setText("");

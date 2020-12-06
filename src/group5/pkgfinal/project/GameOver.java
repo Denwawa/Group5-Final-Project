@@ -27,7 +27,6 @@ public class GameOver extends JPanel {
 
     //back to the menu button
     JButton backToMainMenu;
-    
 
     //constructor
     public GameOver() {
@@ -38,8 +37,6 @@ public class GameOver extends JPanel {
         backToMainMenu = new JButton("click here to restart game");
         add(backToMainMenu);
         backToMainMenu.setBounds(new Rectangle(500, 10, 300, 30));
-        
-
 
     }
 

@@ -78,7 +78,7 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         //Adds the components for the multiple choice game. THe question and answers are all blank.
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
-        displayQuestion = new JLabel("",SwingConstants.CENTER);
+        displayQuestion = new JLabel("", SwingConstants.CENTER);
         displayQuestion.setFont(new Font("Century Gothic", Font.BOLD, 20));
         displayQuestion.setOpaque(true);
         displayQuestion.setForeground(Color.blue);
@@ -91,7 +91,7 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         displayQuestion.setBounds(new Rectangle(400, 50, 500, 50));
         add(displayAnswer);
         displayAnswer.setBounds(new Rectangle(500, 550, 300, 50));
-        
+
         //Creates the box to be found
         findImage = new JButton();
         findImage.addActionListener(this);
@@ -132,15 +132,13 @@ public class WorldCampusGame extends JPanel implements ActionListener {
 
         }
 
-        
         ImageIcon sourceImage1 = new ImageIcon(a1);
-        
+
         findImage.setIcon(sourceImage1);
 
         displayQuestion.setText(q1);
 
     }
-    
 
     //finds a random cordinate to place the image to be found
     public int ranCordinate(int x, int y) {

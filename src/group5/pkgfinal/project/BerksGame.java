@@ -186,9 +186,8 @@ public class BerksGame extends JPanel implements ActionListener {
         if (scored == false) {
             gameScore.addToList("Berks Game");
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
-           System.out.println(gameScore.listGames());
+            System.out.println(gameScore.listGames());
         }
-        
 
         if (obj == answer1 && scored == false) {
             if (multipleChoice1.isTrue == true) {

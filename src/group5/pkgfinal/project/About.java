@@ -44,7 +44,7 @@ public class About extends JPanel {
         backButton.setBounds(new Rectangle(450, 10, 300, 30));
 
         aboutXML = new XML_240();// creates the 240 class that reads and writes XML
-        
+
         xmlFile = "About.xml";
     }
 
@@ -53,7 +53,7 @@ public class About extends JPanel {
         g.drawImage(menuImage, 0, 0, this);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 26));
         g.setColor(Color.WHITE);
-        
+
         aboutXML.openReaderXML(xmlFile);
         String q1 = (String) aboutXML.ReadObject();
         String q2 = (String) aboutXML.ReadObject();
