@@ -4,6 +4,7 @@ import group5.pkgfinal.project.GameScore;
 import group5.pkgfinal.project.MainMap;
 import group5.pkgfinal.project.XML_240;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -53,6 +54,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     MainMap mainMap;
 
     Boolean scored;
+    JLabel funFact;
 
     public UniversityParkGame(GameScore gameScore, JLabel score, JLabel recentPlays, MainMap mainMap) {
         super();
@@ -67,6 +69,13 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         backToMap = new JButton("click here to go back to the Map");
         add(backToMap);
         backToMap.setBounds(new Rectangle(500, 10, 300, 30));
+        
+        //Adds a fact about the campus to the panel
+        funFact = new JLabel("Fun Fact! Beaver Stadium is the 4th largest stadium in the world!");
+        add(funFact);
+        funFact.setBounds(new Rectangle(10, 20, 500, 30));
+        funFact.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        funFact.setForeground(Color.blue);
 
         pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 30);// 60 the maximun number of intervals that th progress bar will show
         pbVertical.setStringPainted(true);
@@ -111,7 +120,6 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
             String gameThemeName = (String) universityParkXML.ReadObject();
             ImageIcon gameImage = new ImageIcon(gameThemeName);
             b1 = new JButton(gameImage);
-            add(b1);
             b1.setBounds(new Rectangle(50, 50, boxWidth, boxHeight));
         }
         b1.addActionListener(this);
