@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -90,19 +91,19 @@ public class ScrantonGame extends JPanel implements ActionListener {
 
         //Adds the components for the multiple choice game. THe question and answers are all blank.
         //The Radio buttons and question label are filled through an XML document which is selected in the options menu.
-        displayQuestion1 = new JLabel("");
+        displayQuestion1 = new JLabel("",SwingConstants.CENTER);
         displayQuestion1.setOpaque(true);
         displayQuestion1.setBackground(Color.gray);
         displayQuestion1.setForeground(Color.black);
         displayQuestion1.setBounds(new Rectangle(0, 0, 300, 60));
 
-        displayQuestion2 = new JLabel("");
+        displayQuestion2 = new JLabel("",SwingConstants.CENTER);
         displayQuestion2.setOpaque(true);
         displayQuestion2.setBackground(Color.gray);
         displayQuestion2.setForeground(Color.black);
         displayQuestion2.setBounds(new Rectangle(0, 0, 300, 60));
 
-        displayQuestion3 = new JLabel("");
+        displayQuestion3 = new JLabel("",SwingConstants.CENTER);
         displayQuestion3.setOpaque(true);
         displayQuestion3.setBackground(Color.gray);
         displayQuestion3.setForeground(Color.black);
@@ -138,31 +139,31 @@ public class ScrantonGame extends JPanel implements ActionListener {
 
         //Adds all the components to the map
         add(displayQuestion1);
-        displayQuestion1.setBounds(new Rectangle(300, 150, 400, 50));
+        displayQuestion1.setBounds(new Rectangle(300, 150, 600, 50));
         add(trueQuestion1);
         trueQuestion1.setBounds(new Rectangle(50, 150, 80, 50));
         add(falseQuestion1);
         falseQuestion1.setBounds(new Rectangle(150, 150, 80, 50));
         add(displayAnswer1);
-        displayAnswer1.setBounds(new Rectangle(800, 150, 100, 50));
+        displayAnswer1.setBounds(new Rectangle(1000, 150, 100, 50));
 
         add(displayQuestion2);
-        displayQuestion2.setBounds(new Rectangle(300, 300, 400, 50));
+        displayQuestion2.setBounds(new Rectangle(300, 300, 600, 50));
         add(trueQuestion2);
         trueQuestion2.setBounds(new Rectangle(50, 300, 80, 50));
         add(falseQuestion2);
         falseQuestion2.setBounds(new Rectangle(150, 300, 80, 50));
         add(displayAnswer2);
-        displayAnswer2.setBounds(new Rectangle(800, 300, 100, 50));
+        displayAnswer2.setBounds(new Rectangle(1000, 300, 100, 50));
 
         add(displayQuestion3);
-        displayQuestion3.setBounds(new Rectangle(300, 450, 400, 50));
+        displayQuestion3.setBounds(new Rectangle(300, 450, 600, 50));
         add(trueQuestion3);
         trueQuestion3.setBounds(new Rectangle(50, 450, 80, 50));
         add(falseQuestion3);
         falseQuestion3.setBounds(new Rectangle(150, 450, 80, 50));
         add(displayAnswer3);
-        displayAnswer3.setBounds(new Rectangle(800, 450, 100, 50));
+        displayAnswer3.setBounds(new Rectangle(1000, 450, 100, 50));
 
         trueQuestion1.addActionListener(this);
         trueQuestion2.addActionListener(this);
@@ -264,6 +265,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             scored1 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer1.setText(trueChoice1.isCorrect);
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
+            }
         }
         if (obj == falseQuestion1 && scored1 == false) {
             if (falseChoice1.isTrue == true) {
@@ -272,6 +276,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             scored1 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer1.setText(falseChoice1.isCorrect);
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
+            }
         }
 
         if (obj == trueQuestion2 && scored2 == false) {
@@ -281,7 +288,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             scored2 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer2.setText(trueChoice2.isCorrect);
-
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
+            }
 
         }
         if (obj == falseQuestion2 && scored2 == false) {
@@ -291,7 +300,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             scored2 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer2.setText(falseChoice2.isCorrect);
-
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
+            }
         }
 
         if (obj == trueQuestion3 && scored3 == false) {
@@ -306,6 +317,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
             }
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
+            }
 
         }
         if (obj == falseQuestion3 && scored3 == false) {
@@ -319,6 +333,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
+            }
+            if (scored1 == true && scored2 == true && scored3 == true){
+                mainMap.scrantonGame.setBackground(Color.red);//sets the color to red on the main map
             }
         }
 
