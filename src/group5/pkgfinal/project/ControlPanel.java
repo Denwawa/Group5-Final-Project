@@ -116,14 +116,17 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
     public void addTimerAndGame() {
 
         add(timeCount);
-        timeCount.setBounds(new Rectangle(10, 600, 200, 30));
-        timeCount.setForeground(Color.orange);
+        timeCount.setBounds(new Rectangle(10, 600, 210, 30));
+        timeCount.setForeground(Color.red);
+        timeCount.setOpaque(true);
         add(showScore);
-        showScore.setBounds(new Rectangle(10, 620, 200, 30));
-        showScore.setForeground(Color.orange);
+        showScore.setBounds(new Rectangle(10, 620, 80, 30));
+        showScore.setForeground(Color.red);
+        showScore.setOpaque(true);
         add(recentPlays);
-        recentPlays.setBounds(new Rectangle(10, 580, 500, 30));
-        recentPlays.setForeground(Color.orange);
+        recentPlays.setBounds(new Rectangle(90, 620, 500, 30));
+        recentPlays.setForeground(Color.red);
+        recentPlays.setOpaque(true);
 
     }
 
