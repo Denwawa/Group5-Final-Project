@@ -163,11 +163,6 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             findImage.removeActionListener(this);//after the correct answer is put in, they cant change it
-            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-            if (gameScore.gameComplete == 5) {
-                mainMap.showGameOver();
-            }
-
         }
     }
 }
