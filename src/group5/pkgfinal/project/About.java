@@ -58,6 +58,9 @@ public class About extends JPanel {
         String q1 = (String) aboutXML.ReadObject();
         String q2 = (String) aboutXML.ReadObject();
         String q3 = (String) aboutXML.ReadObject();
+        String q4 = (String) aboutXML.ReadObject();
+        String q5 = (String) aboutXML.ReadObject();
+        String q6 = (String) aboutXML.ReadObject();
 
         ImageIcon sourceImage1 = new ImageIcon(q1);
         Image myImage1 = sourceImage1.getImage();
@@ -68,6 +71,9 @@ public class About extends JPanel {
         g.drawString(q3, 450, 100);
         g.drawImage(myImage1, 400, 130, this);
         g.drawImage(myImage2, 600, 130, this);
+        g.drawString(q4, 450, 400);
+        g.drawString(q5, 500, 500);
+        g.drawString(q6, 450, 600);
     }
 
 }
