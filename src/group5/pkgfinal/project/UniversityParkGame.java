@@ -82,7 +82,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         pbVertical = new JProgressBar(JProgressBar.VERTICAL, 0, 30);// 60 the maximun number of intervals that th progress bar will show
         pbVertical.setStringPainted(true);
         add(pbVertical);
-        pbVertical.setBounds(new Rectangle(1100, 0, 50, 600));
+        pbVertical.setBounds(new Rectangle(1130, 0, 50, 600));
 
         //adds keylistener
         setFocusable(true);

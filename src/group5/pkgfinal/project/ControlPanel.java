@@ -278,7 +278,7 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
         if (obj == universityPark.backToMap) {
             universityPark.gameLeave();
             remove(universityPark);
-            
+
             add(mainMap);//returns and rebuilds the map
             validate();
             repaint();
@@ -437,13 +437,9 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             pickGame();
         }
 
-        if (key == KeyEvent.VK_SPACE && universityPark.gameEnter == true && universityPark.gameStart == false  && universityPark.gameDone == false) {
-//            remove(universityPark.backToMap);
-//            universityPark.gameStart = true;
-//            universityPark.buttonTimer.start();
-//            universityPark.gameDone = false;
-              universityPark.startGame();
-              
+        if (key == KeyEvent.VK_SPACE && universityPark.gameEnter == true && universityPark.gameStart == false && universityPark.gameDone == false) {
+            universityPark.startGame();
+
         }
     }
 
