@@ -2,7 +2,7 @@
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
 <string>Instructions</string>
 <string>1. Start by making your choices for character and theme</string>
-<string>2. Use the arror key to move around the map</string>
-<string>3. ...</string>
-<string>4. ...</string>
+<string>2. Use the arrow key to move around the map</string>
+<string>3. Complete each game to receive a score</string>
+<string>4. The user with the highest score and fastest time wins!</string>
 </java>

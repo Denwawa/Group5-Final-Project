@@ -53,13 +53,14 @@ public class Instructions extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(menuImage, 0, 0, this);
-        g.setFont(new Font("TimesRoman", Font.BOLD, 22));
+        g.setFont(new Font("Arial", Font.BOLD, 22));
         g.setColor(Color.ORANGE);
         berksXML.openReaderXML(xmlFile);
         String q = (String) berksXML.ReadObject();
-        g.drawString(q, 310, 100);
+        g.drawString(q, 500, 270);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 22));
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.RED);
+        
         
         String q1 = "";
         String q2 = "";
@@ -70,10 +71,10 @@ public class Instructions extends JPanel {
         q3 = (String) berksXML.ReadObject();
         q4 = (String) berksXML.ReadObject();
         
-        g.drawString(q1, 310, 140);
-        g.drawString(q2, 310, 170);
-        g.drawString(q3, 310, 200);
-        g.drawString(q4, 310, 230);
+        g.drawString(q1, 310, 310);
+        g.drawString(q2, 310, 360);
+        g.drawString(q3, 310, 410);
+        g.drawString(q4, 310, 460);
         
 //        g.drawString("1. Start by making your choices for character and theme", 310, 140);
 //        g.drawString("2. Use the arror key to move around the map", 310, 170);
