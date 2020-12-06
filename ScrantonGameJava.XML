@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
-<string>29 + 38 = 57?</string>
-<boolean>false</boolean>
-<string>true</string>
+<string>This class is IST 240</string>
 <boolean>true</boolean>
-<string>false</string>
-<string>Pi is a terminating number </string>
-<boolean>false</boolean>
 <string>true</string>
 <boolean>false</boolean>
 <string>false</string>
-<string>-2 is an integer</string>
+<string>Inheritance is when one class acquires the properties of another class</string>
+<boolean>true</boolean>
+<string>true</string>
+<boolean>false</boolean>
+<string>false</string>
+<string>An integer in Java stores 4 bytes</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>
