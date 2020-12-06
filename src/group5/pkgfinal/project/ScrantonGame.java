@@ -53,7 +53,7 @@ public class ScrantonGame extends JPanel implements ActionListener {
             trueChoice2, falseChoice2,
             trueChoice3, falseChoice3;
 
-    Boolean scored;
+    Boolean scored1,scored2,scored3;
 
     XML_240 scrantonXML;
     String xmlFile, theme;
@@ -66,7 +66,9 @@ public class ScrantonGame extends JPanel implements ActionListener {
         super();
         //sets the theme to blank and if it was scored yet to false
         theme = "";
-        scored = false;
+        scored1 = false;
+        scored2 = false;
+        scored3 = false;
         scrantonScore = score;
         this.gameScore = gameScore;
         this.recentPlays = recentPlays;
@@ -136,25 +138,31 @@ public class ScrantonGame extends JPanel implements ActionListener {
 
         //Adds all the components to the map
         add(displayQuestion1);
-        displayQuestion1.setBounds(new Rectangle(600, 150, 500, 50));
+        displayQuestion1.setBounds(new Rectangle(300, 150, 400, 50));
         add(trueQuestion1);
-        trueQuestion1.setBounds(new Rectangle(50, 150, 200, 50));
+        trueQuestion1.setBounds(new Rectangle(50, 150, 80, 50));
         add(falseQuestion1);
-        falseQuestion1.setBounds(new Rectangle(100, 150, 200, 50));
+        falseQuestion1.setBounds(new Rectangle(150, 150, 80, 50));
+        add(displayAnswer1);
+        displayAnswer1.setBounds(new Rectangle(800, 150, 100, 50));
 
         add(displayQuestion2);
-        displayQuestion2.setBounds(new Rectangle(600, 250, 500, 50));
+        displayQuestion2.setBounds(new Rectangle(300, 300, 400, 50));
         add(trueQuestion2);
-        trueQuestion2.setBounds(new Rectangle(50, 250, 200, 50));
+        trueQuestion2.setBounds(new Rectangle(50, 300, 80, 50));
         add(falseQuestion2);
-        falseQuestion2.setBounds(new Rectangle(100, 250, 200, 50));
+        falseQuestion2.setBounds(new Rectangle(150, 300, 80, 50));
+        add(displayAnswer2);
+        displayAnswer2.setBounds(new Rectangle(800, 300, 100, 50));
 
         add(displayQuestion3);
-        displayQuestion3.setBounds(new Rectangle(600, 350, 500, 50));
+        displayQuestion3.setBounds(new Rectangle(300, 450, 400, 50));
         add(trueQuestion3);
-        trueQuestion3.setBounds(new Rectangle(50, 350, 200, 50));
+        trueQuestion3.setBounds(new Rectangle(50, 450, 80, 50));
         add(falseQuestion3);
-        falseQuestion3.setBounds(new Rectangle(100, 350, 200, 50));
+        falseQuestion3.setBounds(new Rectangle(150, 450, 80, 50));
+        add(displayAnswer3);
+        displayAnswer3.setBounds(new Rectangle(800, 450, 100, 50));
 
         trueQuestion1.addActionListener(this);
         trueQuestion2.addActionListener(this);
@@ -244,66 +252,70 @@ public class ScrantonGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object obj = e.getSource();
-        if (scored == false) {
+        if (scored1 == false && scored2 == false && scored3 == false) {
             gameScore.addToList("Scranton Game");
             System.out.println(gameScore.recentlyPlayed);
         }
 
-        if (obj == trueQuestion1 && scored == false) {
+        if (obj == trueQuestion1 && scored1 == false) {
             if (trueChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
+            scored1 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer1.setText(trueChoice1.isCorrect);
         }
-        if (obj == falseQuestion1 && scored == false) {
+        if (obj == falseQuestion1 && scored1 == false) {
             if (falseChoice1.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
+            scored1 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer1.setText(falseChoice1.isCorrect);
         }
 
-        if (obj == trueQuestion2 && scored == false) {
+        if (obj == trueQuestion2 && scored2 == false) {
             if (trueChoice2.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
+            scored2 = true;
             scrantonScore.setText("Score: " + gameScore.score);
             displayAnswer2.setText(trueChoice2.isCorrect);
 
 
         }
-        if (obj == falseQuestion2 && scored == false) {
+        if (obj == falseQuestion2 && scored2 == false) {
             if (falseChoice2.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
+            scored2 = true;
             scrantonScore.setText("Score: " + gameScore.score);
-            displayAnswer1.setText(falseChoice2.isCorrect);
+            displayAnswer2.setText(falseChoice2.isCorrect);
 
         }
 
-        if (obj == trueQuestion3 && scored == false) {
+        if (obj == trueQuestion3 && scored3 == false) {
             if (trueChoice3.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             scrantonScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer3.setText(trueChoice3.isCorrect);
-            scored = true;
+            scored3 = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
             }
 
         }
-        if (obj == falseQuestion3 && scored == false) {
+        if (obj == falseQuestion3 && scored3 == false) {
             if (falseChoice3.isTrue == true) {
                 gameScore.increaseScore(1);//increases the score by 1 point. change the number in the paranthases by the actual score.
             }
             scrantonScore.setText("Score: " + gameScore.score);
             recentPlays.setText("Recent Plays: " + gameScore.listGames());
             displayAnswer3.setText(falseChoice3.isCorrect);
-            scored = true;
+            scored3 = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
                 mainMap.showWorldCampus();
