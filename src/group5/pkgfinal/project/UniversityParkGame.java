@@ -34,8 +34,9 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     Timer buttonTimer;
     int delay = 0;
 
-    Boolean gameDone = true;
+    Boolean gameDone = false;
     Boolean gameStart = false;
+    Boolean gameEnter = false;
 
     int boxWidth = 100;
     int boxHeight = 75;
@@ -60,6 +61,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         universityParkXML = new XML_240();// creates the 240 class that reads and writes XML
         this.gameScore = gameScore;
         this.universityParkScore = score;
+        this.mainMap = mainMap;
         createClickMeIcon("Math");
         //adds a back button to the game
         backToMap = new JButton("click here to go back to the Map");
@@ -79,14 +81,6 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         //--Timer--
         delay = 1000; //1 second or 1000 milliseconds
         buttonTimer = new Timer(delay, this);
-
-        //Put this here temporarily
-        //This game is broken so I wanted to see if the game would appear
-        gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-        if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
-            mainMap.showWorldCampus();
-        }
-
     }
 
     @Override
@@ -120,7 +114,7 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
             add(b1);
             b1.setBounds(new Rectangle(50, 50, boxWidth, boxHeight));
         }
-
+        b1.addActionListener(this);
     }
 
     @Override
@@ -130,14 +124,21 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     @Override
     public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
-        
-            if (k == e.VK_SPACE && gameDone == true) {
+
+        if (k == e.VK_SPACE && gameDone == true) {
             gameStart = true;
             buttonTimer.start();
             gameDone = false;
 
         }
 
+    }
+
+    public void startGame() {
+        if (gameDone == false) {
+            gameStart = true;
+            buttonTimer.start();
+        }
     }
 
     @Override
@@ -149,6 +150,57 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
     public void actionPerformed(ActionEvent event) {
         Object obj = event.getSource();
 
+        if (obj == buttonTimer) {
+            if (j >= 0) {
+                pbVertical.setValue(j);
+                pbVertical.setValue(j);
+                pbVertical.setString("" + j);
+                j = j - 1;
+
+                remove(b1);
+                validate();
+                repaint();
+                delay = delay - 10;
+                buttonTimer.setDelay(delay);
+
+                add(b1);
+                b1.setBounds(createtBox(boxWidth, boxHeight));
+            } else {
+                buttonTimer.stop();
+                gameStart = false;
+                gameDone = true;
+                remove(b1);
+                validate();
+                repaint();
+                add(b1);
+                b1.setBounds(new Rectangle(500, 150, 300, 300));
+                b1.setText("GAME OVER --- SCORE " + universityParkScore);
+                scored = true;//tells the main game that this game's score has been accoutned for
+                mainMap.univParkGame.setBackground(Color.red);//sets the color to red on the main map
+                gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+                gameScore.addToList("University Park Game");
+                if (gameScore.gameComplete == 5) {//needs to reach 5 before the WorldCampus is revealed
+                    mainMap.showWorldCampus();
+                }
+
+            }
+
+        }
+
+        if (obj == b1 && gameStart == true) {
+            universityParkNumScore++;
+            buttonTimer.setDelay(delay);
+            remove(b1);
+            validate();
+            repaint();
+
+            add(b1);
+            boxWidth = boxWidth - (int) ((float) boxWidth / 10f);
+            boxHeight = boxHeight - (int) ((float) boxHeight / 10f);
+            b1.setBounds(createtBox(boxWidth, boxHeight));
+            gameScore.increaseScore(1);
+
+        }
     }
 
     //returns a random number in the range of the panel.
@@ -172,6 +224,14 @@ public class UniversityParkGame extends JPanel implements KeyListener, ActionLis
         remove(b1);
         validate();
         repaint();
+    }
+
+    public void gameEnter() {
+        gameEnter = true;
+    }
+
+    public void gameLeave() {
+        gameEnter = false;
     }
 
 }

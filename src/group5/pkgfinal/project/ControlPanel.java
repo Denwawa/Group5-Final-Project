@@ -173,7 +173,8 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
     public void pickGame() {
         String campus = mainMap.intersectsWhichCampus();
-        if (campus == "UnivPark") {
+        if (campus == "UnivPark" && universityPark.gameDone == false) {
+            universityPark.gameEnter();
             remove(mainMap);
             add(universityPark);
             validate();
@@ -275,7 +276,9 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
         //All these if statementrs allow each game panel to return back to the main map
         if (obj == universityPark.backToMap) {
+            universityPark.gameLeave();
             remove(universityPark);
+            
             add(mainMap);//returns and rebuilds the map
             validate();
             repaint();
@@ -407,53 +410,53 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
 
         //Source code to click me game
         //Need to place here so action listeners work properly
-        if (obj == universityPark.buttonTimer) {
-            if (universityPark.j >= 0) {
-                universityPark.pbVertical.setValue(universityPark.j);
-                universityPark.pbVertical.setValue(universityPark.j);
-                universityPark.pbVertical.setString("" + universityPark.j);
-                universityPark.j = universityPark.j - 1;
-
-                remove(universityPark.b1);
-                validate();
-                repaint();
-                universityPark.delay = universityPark.delay - 10;
-                universityPark.buttonTimer.setDelay(universityPark.delay);
-
-                add(universityPark.b1);
-                universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
-            } else {
-                universityPark.gameStart = false;
-                universityPark.gameDone = true;
-                remove(universityPark.b1);
-                validate();
-                repaint();
-                add(universityPark.b1);
-                universityPark.b1.setBounds(new Rectangle(500, 150, 300, 300));
-                universityPark.b1.setText("GAME OVER --- SCORE " + universityPark.universityParkScore);
-                universityPark.scored = true;//tells the main game that this game's score has been accoutned for
-                mainMap.universityPark.setBackground(Color.red);//sets the color to red on the main map
-                gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
-                gameScore.increaseScore(universityPark.universityParkNumScore);
-
-            }
-
-        }
-
-        if (obj == universityPark.b1 && universityPark.gameStart == true) {
-
-            universityPark.universityParkNumScore++;
-            universityPark.buttonTimer.setDelay(universityPark.delay);
-            remove(universityPark.b1);
-            validate();
-            repaint();
-
-            add(universityPark.b1);
-            universityPark.boxWidth = universityPark.boxWidth - (int) ((float) universityPark.boxWidth / 10f);
-            universityPark.boxHeight = universityPark.boxHeight - (int) ((float) universityPark.boxHeight / 10f);
-            universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
-
-        }
+//        if (obj == universityPark.buttonTimer) {
+//            if (universityPark.j >= 0) {
+//                universityPark.pbVertical.setValue(universityPark.j);
+//                universityPark.pbVertical.setValue(universityPark.j);
+//                universityPark.pbVertical.setString("" + universityPark.j);
+//                universityPark.j = universityPark.j - 1;
+//
+//                remove(universityPark.b1);
+//                validate();
+//                repaint();
+//                universityPark.delay = universityPark.delay - 10;
+//                universityPark.buttonTimer.setDelay(universityPark.delay);
+//
+//                add(universityPark.b1);
+//                universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
+//            } else {
+//                universityPark.gameStart = false;
+//                universityPark.gameDone = true;
+//                remove(universityPark.b1);
+//                validate();
+//                repaint();
+//                add(universityPark.b1);
+//                universityPark.b1.setBounds(new Rectangle(500, 150, 300, 300));
+//                universityPark.b1.setText("GAME OVER --- SCORE " + universityPark.universityParkScore);
+//                universityPark.scored = true;//tells the main game that this game's score has been accoutned for
+//                mainMap.universityPark.setBackground(Color.red);//sets the color to red on the main map
+//                gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+//                gameScore.increaseScore(universityPark.universityParkNumScore);
+//
+//            }
+//
+//        }
+//
+//        if (obj == universityPark.b1 && universityPark.gameStart == true) {
+//
+//            universityPark.universityParkNumScore++;
+//            universityPark.buttonTimer.setDelay(universityPark.delay);
+//            remove(universityPark.b1);
+//            validate();
+//            repaint();
+//
+//            add(universityPark.b1);
+//            universityPark.boxWidth = universityPark.boxWidth - (int) ((float) universityPark.boxWidth / 10f);
+//            universityPark.boxHeight = universityPark.boxHeight - (int) ((float) universityPark.boxHeight / 10f);
+//            universityPark.b1.setBounds(universityPark.createtBox(universityPark.boxWidth, universityPark.boxHeight));
+//
+//        }
 
     }
 
@@ -486,12 +489,13 @@ public class ControlPanel extends JPanel implements ActionListener, KeyListener 
             pickGame();
         }
 
-        if (key == KeyEvent.VK_SPACE && universityPark.gameDone == true) {
-            remove(universityPark.backToMap);
-            universityPark.gameStart = true;
-            universityPark.buttonTimer.start();
-            universityPark.gameDone = false;
-
+        if (key == KeyEvent.VK_SPACE && universityPark.gameEnter == true && universityPark.gameStart == false  && universityPark.gameDone == false) {
+//            remove(universityPark.backToMap);
+//            universityPark.gameStart = true;
+//            universityPark.buttonTimer.start();
+//            universityPark.gameDone = false;
+              universityPark.startGame();
+              
         }
     }
 
