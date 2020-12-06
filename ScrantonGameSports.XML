@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
-<string>Penn State has 9 NCAA tournament appearances</string>
+<string>Q1.) Penn State has 9 NCAA tournament appearances</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>
 <string>false</string>
-<string>Saquon Barkley was drafted as the number one overall pick</string>
+<string>Q2.) Saquon Barkley was drafted as the number one overall pick</string>
 <boolean>false</boolean>
 <string>true</string>
 <boolean>true</boolean>
 <string>false</string>
-<string>Alyssa Naeher attended Penn State from 2006-2009</string>
+<string>Q3.) Alyssa Naeher attended Penn State from 2006-2009</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>

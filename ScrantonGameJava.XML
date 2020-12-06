@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.7.0_65" class="java.beans.XMLDecoder">
-<string>This class is IST 240</string>
+<string>Q1.) A Boolean expression in Java returns a true or false value</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>
 <string>false</string>
-<string>Inheritance is when one class acquires the properties of another class</string>
+<string>Q2.) Inheritance is when one class acquires the properties of another class</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>
 <string>false</string>
-<string>An integer in Java stores 4 bytes</string>
+<string>Q3.) An integer in Java stores 4 bytes</string>
 <boolean>true</boolean>
 <string>true</string>
 <boolean>false</boolean>
