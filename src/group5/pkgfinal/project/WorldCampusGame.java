@@ -49,6 +49,8 @@ public class WorldCampusGame extends JPanel implements ActionListener {
     String xmlFile, theme;
 
     GameScore gameScore;
+    
+    MainMap mainMap;
 
     //constructor
     public WorldCampusGame(GameScore gameScore, JLabel score, JLabel recentPlays) {
@@ -151,7 +153,6 @@ public class WorldCampusGame extends JPanel implements ActionListener {
         Object obj = e.getSource();
         if (scored == false) {
             gameScore.addToList("World Campus Game");
-            System.out.println(gameScore.recentlyPlayed);
         }
 
         if (obj == findImage && scored == false) {
@@ -162,6 +163,10 @@ public class WorldCampusGame extends JPanel implements ActionListener {
             scored = true;
             gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
             findImage.removeActionListener(this);//after the correct answer is put in, they cant change it
+            gameScore.increaseGameComplete();//add this to your code so that the game knows when to add the "world campus" to the map.
+            if (gameScore.gameComplete == 5) {
+                mainMap.showGameOver();
+            }
 
         }
     }

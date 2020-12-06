@@ -65,15 +65,18 @@ public class Instructions extends JPanel {
         String q2 = "";
         String q3 = "";
         String q4 = "";
+        String q5 = "";
         q1 = (String) berksXML.ReadObject();
         q2 = (String) berksXML.ReadObject();
         q3 = (String) berksXML.ReadObject();
         q4 = (String) berksXML.ReadObject();
+        q5 = (String) berksXML.ReadObject();
 
         g.drawString(q1, 310, 310);
         g.drawString(q2, 310, 360);
         g.drawString(q3, 310, 410);
         g.drawString(q4, 310, 460);
+        g.drawString(q5, 310, 510);
 
 //        g.drawString("1. Start by making your choices for character and theme", 310, 140);
 //        g.drawString("2. Use the arror key to move around the map", 310, 170);

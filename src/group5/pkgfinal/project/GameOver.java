@@ -27,6 +27,8 @@ public class GameOver extends JPanel {
 
     //back to the menu button
     JButton backToMainMenu;
+    
+
 
     //constructor
     public GameOver() {
@@ -37,12 +39,16 @@ public class GameOver extends JPanel {
         backToMainMenu = new JButton("click here to restart game");
         add(backToMainMenu);
         backToMainMenu.setBounds(new Rectangle(500, 10, 300, 30));
+        
 
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(gameOver, 0, 0, this);
+        g.setFont(new Font("Arial", Font.BOLD, 26));
+        g.setColor(Color.WHITE);
+        g.drawString("Game Over", 580, 80);
     }
 
 }

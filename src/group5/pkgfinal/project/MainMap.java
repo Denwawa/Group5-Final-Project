@@ -127,7 +127,7 @@ public class MainMap extends JPanel implements ActionListener {
         gameOverGame = new JButton("Game Over");
         gameOverGame.setBackground(Color.gray);
         add(gameOverGame);
-        gameOverGame.setBounds(new Rectangle(1050, 50, 100, 100));
+        gameOverGame.setBounds(new Rectangle(1050, 50, 0, 0));
         gameOverGame.addActionListener(this);
 
         setFocusable(true);
@@ -137,6 +137,11 @@ public class MainMap extends JPanel implements ActionListener {
     //reveals world campus
     public void showWorldCampus() {
         worldCampGame.setBounds(new Rectangle(600, 100, 110, 110));
+    }
+    
+    //reveals world campus
+    public void showGameOver() {
+        gameOverGame.setBounds(new Rectangle(1050, 50, 100, 100));
     }
 
     public void movePlayerRight() {
