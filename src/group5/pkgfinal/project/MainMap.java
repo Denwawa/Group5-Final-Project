@@ -127,7 +127,6 @@ public class MainMap extends JPanel implements ActionListener {
         gameOverGame.setBackground(Color.gray);
         add(gameOverGame);
         gameOverGame.setBounds(new Rectangle(1050, 50, 110, 110));
-        gameOverGame.addActionListener(this);
 
         setFocusable(true);
         requestFocusInWindow();
